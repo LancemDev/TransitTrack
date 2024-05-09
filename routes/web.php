@@ -7,21 +7,29 @@ use App\Livewire\Users\Home as UsersHome;
 use App\Livewire\Admin\Home as AdminHome;
 use App\Livewire\Sacco\Home as SaccoHome;
 use App\Livewire\Driver\Home as DriverHome;
-use App\Livewire\Login;
-use App\Livewire\Register;
-
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/home', HomePage::class);
-Route::get('/login', Login::class);
-Route::get('/register', Register::class);
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
+Route::prefix('auth')->group(function () {
+    Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+    Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
+});
 
 // User routes with middleware to be created later
 Route::prefix('users')->group(function () {
-    Route::get('/home', UsersHome::class);
+    Route::get('/home', UsersHome::class)->name('user.home');
 
 });
 
