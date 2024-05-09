@@ -7,7 +7,10 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.0",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.4",
+        "livewire/volt": "^1.6",
+        "robsontenorio/mary": "^1.30"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
