@@ -35,7 +35,8 @@
             <div class="mt-4 text-sm text-gray-600 text-center">
               <p>or with email</p>
             </div>
-            <form action="/auth/register" method="POST" class="space-y-4">
+            <form action="/register" method="POST" class="space-y-4">
+              @csrf
               <!-- Your form elements go here -->
               <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
@@ -58,7 +59,7 @@
               </div>
             </form>
             <div class="mt-4 text-sm text-gray-600 text-center">
-              <p>Already have an account? <a href="#" class="text-black hover:underline">Login here</a>
+              <p>Already have an account? <a href="/login" class="text-black hover:underline">Login here</a>
               </p>
             </div>
           </div>
