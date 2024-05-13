@@ -102,6 +102,7 @@ Use the `BLANK_README.md` to get started.
 * [![Angular][Angular.io]][Angular-url]
 * [![Svelte][Svelte.dev]][Svelte-url]
 * [![Laravel][Laravel.com]][Laravel-url]
+* [![Tailwind][Tailwindcss.com]][Tailwind-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
 
