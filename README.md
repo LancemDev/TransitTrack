@@ -139,9 +139,9 @@ _Below is an example of how you can instruct your audience on installing and set
 3. Create the .env file. Then copy contents of .env.example to it and modify accordingly
 
 4. Install composer packages
-  ```sh
-  composer install
-  ```
+   ```sh
+   composer install
+   ```
 
 5. Generate the app key from the terminal in the directory
    ```sh
@@ -149,23 +149,23 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
 
 6. Run npm either via npm or bun
-  ```sh
-  npm run dev
-  ```
+   ```sh
+   npm run dev
+   ```
 
-  ```sh
-  bun run dev
-  ```
+   ```sh
+   bun run dev
+   ```
 
 7. Run migrations and seeders
-  ```sh
-  php artisan migrate --seed
-  ```
+   ```sh
+   php artisan migrate --seed
+   ```
 
 8. Serve the laravel app(don't terminate npm)
-  ```sh
-  php artisan serve
-  ```
+   ```sh
+   php artisan serve
+   ```
 
 
 
