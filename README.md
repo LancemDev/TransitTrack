@@ -128,19 +128,50 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/LancemDev/Online-Vehicle-Monitoring-and-Management
    ```
-3. Install NPM packages
+2. Install NPM packages either via npm or bun
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   ```sh
+   bun install
    ```
+3. Create the .env file. Then copy contents of .env.example to it and modify accordingly
+
+4. Install composer packages
+  ```sh
+  composer install
+  ```
+
+5. Generate the app key from the terminal in the directory
+   ```sh
+   php artisan key:generate
+   ```
+
+6. Run npm either via npm or bun
+  ```sh
+  npm run dev
+  ```
+
+  ```sh
+  bun run dev
+  ```
+
+7. Run migrations and seeders
+  ```sh
+  php artisan migrate --seed
+  ```
+
+8. Serve the laravel app(don't terminate npm)
+  ```sh
+  php artisan serve
+  ```
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,22 +186,6 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -204,9 +219,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Your Name - [@Lance_Munyao](https://twitter.com/Lance_Munyao) - munyaolance1@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/LancemDev/Vehicle-Monitoring-and-Management](https://github.com/LancemDev/Vehicle-Monitoring-and-Management)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
