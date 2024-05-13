@@ -22,10 +22,10 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-Route::prefix('auth')->group(function () {
-    Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-    Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
-});
+
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
+
 
 // User routes with middleware to be created later
 Route::prefix('users')->group(function () {

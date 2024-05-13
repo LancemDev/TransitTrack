@@ -13,9 +13,9 @@ class AuthController extends Controller
     {
         $fields = $request->validate([
             'name' => 'required|string',
-            'email' => 'required|string|unique:users,email',
-            'password' => 'required|string|confirmed',
-            'phone' => 'required|string|unique:users,phone'
+            'email' => 'required|string',
+            'password' => 'required|string',
+            'phone' => 'required|string'
         ]);
 
         $user = User::create([
@@ -31,7 +31,6 @@ class AuthController extends Controller
             'user' => $user,
             'token' => $token
         ];
-
         return redirect()->route('user.home')->with('success', 'Account created successfully');
     }
 
