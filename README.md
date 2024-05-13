@@ -96,15 +96,11 @@ Use the `BLANK_README.md` to get started.
 ### Built With
 
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Tailwind][Tailwindcss.com]][Tailwind-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![Livewire][Livewire.com]][Livewire-url]
+* [![DaisyUI][DaisyUI.com]][DaisyUI-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -274,6 +270,10 @@ Use this space to list resources you find helpful and would like to give credit 
 [Laravel-url]: https://laravel.com
 [Tailwindcss.com]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 [Tailwind-url]: https://tailwindcss.com/
+[Livewire.com]: https://img.shields.io/badge/Livewire-FF2D20?style=for-the-badge&logo=livewire&logoColor=white
+[Livewire-url]: https://laravel-livewire.com/
+[DaisyUI.com]: https://img.shields.io/badge/DaisyUI-7C3AED?style=for-the-badge&logo=daisyui&logoColor=white
+[DaisyUI-url]: https://daisyui.com/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
