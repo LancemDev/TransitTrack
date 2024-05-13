@@ -18,10 +18,6 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 
 
 <!-- PROJECT LOGO -->
@@ -31,19 +27,19 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Online Vehicle Monitoring and Management System</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Bringing efficiency and security to vehicle monitoring and management
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/LancemDev/Online-Vehicle-Monitoring-and-Management"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/LancemDev/Online-Vehicle-Monitoring-and-Management">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/LancemDev/Online-Vehicle-Monitoring-and-Management/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/LancemDev/Online-Vehicle-Monitoring-and-Management/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
