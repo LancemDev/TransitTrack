@@ -215,7 +215,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@Lance_Munyao](https://twitter.com/Lance_Munyao) - munyaolance1@gmail.com
+Lance Munyao - [@Lance_Munyao](https://twitter.com/Lance_Munyao) - munyaolance1@gmail.com
 
 Project Link: [https://github.com/LancemDev/Vehicle-Monitoring-and-Management](https://github.com/LancemDev/Vehicle-Monitoring-and-Management)
 
