@@ -16,10 +16,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the user is authenticated
-        if (auth()->check()) {
-            // Get the authenticated user's email
-            $email = auth()->user()->email;
+        // Check if an admin is authenticated
+        if (auth()->guard('admin')->check()) {
+            // Get the authenticated admin's email
+            $email = auth()->guard('admin')->user()->email;
 
             // Check if a user with this email exists in the admins table
             $admin = Admin::where('email', $email)->first();
@@ -29,7 +29,7 @@ class AdminMiddleware
                 return response([
                     'message' => 'Unauthorized Admin',
                     'email' => $email,
-                    'role' => auth()->user()->role,
+                    'role' => auth()->guard('admin')->user()->role,
                 ], 401);
             }
         }

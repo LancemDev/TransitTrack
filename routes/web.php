@@ -39,17 +39,17 @@ Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
     // SACCO routes
-    Route::get('sacco/home', SaccoHome::class)->name('sacco.home')->middleware(saccomid::class);
+    Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home')->middleware('auth:sacco_admin')->middleware(saccomid::class);
 
     // Admin routes
-    Route::get('admin/home', AdminHome::class)->name('admin.home')->middleware(adminmid::class);
+    Route::get('admin/home', AdminHome::class)->name('admin.home')->middleware('auth:admin')->middleware(adminmid::class);
 
     // User routes
-    Route::get('users/home', UsersHome::class)->name('user.home')->middleware(usermid::class);
+    Route::get('users/home', UsersHome::class)->name('user.home')->middleware('auth:users')->middleware(usermid::class);
 
     // Driver routes
-    Route::get('driver/home', DriverHome::class)->name('driver.home')->middleware(drivermid::class);
+    Route::get('driver/home', DriverHome::class)->name('driver.home')->middleware('auth:driver')->middleware(drivermid::class);
 
-});
+// });

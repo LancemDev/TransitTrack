@@ -17,25 +17,25 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the user is authenticated
-        if (auth()->check()) {
+        // Check if an admin is authenticated
+        if (auth()->guard('users')->check()) {
             // Get the authenticated user's email
-            $email = auth()->user()->email;
+            $email = auth()->guard('users')->user()->email;
 
-            // Check if a user with this email exists in the admins table
+            // Check if a user with this email exists in the users table
             $admin = User::where('email', $email)->first();
 
-            // If the user is not in the admins table, return an error response
+            // If the user is not in the users table, return an error response
             if (!$admin) {
                 return response([
-                    'message' => 'Unauthorized Admin',
+                    'message' => 'Unauthorized Normal User',
                     'email' => $email,
-                    'role' => auth()->user()->role,
+                    'role' => auth()->guard('user')->user()->role,
                 ], 401);
             }
         }
 
-        // If the user is in the admins table, continue with the request
+        // If the user is in the users table, continue with the request
         return $next($request);
     }
 }
