@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserRole
+class SaccoMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,13 @@ class UserRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // $user = $request->user();
-        // if ($user && $user->role === 'admin') {
-        //     return $next($request);
-        // }else {
-        //     return response('Unauthorized', 401);
-        // }
+        if (auth()->check() && auth()->user()->role !== 'sacco') {
+            return response([
+                'message' => 'Unauthorized Sacco',
+                'role' => auth()->user()->role,
+            ], 401);
+        }
+
         return $next($request);
     }
 }

@@ -25,12 +25,8 @@ class AuthController extends Controller
             'phone' => $fields['phone']
         ]);
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
-
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
+        auth()->login($user);
+        
         return redirect()->route('user.home')->with('success', 'Account created successfully');
     }
 
@@ -51,13 +47,17 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        // $token = $user->createToken('myapptoken')->plainTextToken;
 
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
+        // $response = [
+        //     'user' => $user,
+        //     'token' => $token
+        // ];
 
-        return response($response, 201);
+        // Log in the user
+        auth()->login($user);
+
+        // Redirect to the user's role home
+        return redirect()->route($user->role . '.home')->with('success', 'Login successful');
     }
 }
