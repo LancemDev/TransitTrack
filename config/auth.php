@@ -40,6 +40,20 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'sacco_admin' => [
+            'driver' => 'session',
+            'provider' => 'sacco_admins',
+        ],
+    
+        'driver' => [
+            'driver' => 'session',
+            'provider' => 'drivers',
+        ],
+    
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -65,10 +79,20 @@ return [
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'sacco_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SaccoAdmin::class,
+        ],
+    
+        'drivers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Driver::class,
+        ],
+    
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
     ],
 
     /*
