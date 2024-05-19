@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Driver;
+use App\Models\SaccoAdmin;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -26,7 +30,7 @@ class AuthController extends Controller
         ]);
 
         auth()->login($user);
-        
+
         return redirect()->route('user.home')->with('success', 'Account created successfully');
     }
 
@@ -37,8 +41,27 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
 
-        // Check email
+        // Check email in users table
         $user = User::where('email', $fields['email'])->first();
+        $role = 'user';
+
+        // Check email in SaccoAdmin table if not found in users table
+        if (!$user) {
+            $user = SaccoAdmin::where('email', $fields['email'])->first();
+            $role = 'sacco_admin';
+        }
+
+        // Check email in Driver table if not found in users and sacco_admins tables
+        if (!$user) {
+            $user = Driver::where('email', $fields['email'])->first();
+            $role = 'driver';
+        }
+
+        // Check email in Admin table if not found in users, sacco_admins, and drivers tables
+        if (!$user) {
+            $user = Admin::where('email', $fields['email'])->first();
+            $role = 'admin';
+        }
 
         // Check password
         if (!$user || !Hash::check($fields['password'], $user->password)) {
@@ -47,17 +70,10 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // $token = $user->createToken('myapptoken')->plainTextToken;
-
-        // $response = [
-        //     'user' => $user,
-        //     'token' => $token
-        // ];
-
         // Log in the user
         auth()->login($user);
 
         // Redirect to the user's role home
-        return redirect()->route($user->role . '.home')->with('success', 'Login successful');
+        return redirect()->route($role . '.home')->with('success', 'Login successful');
     }
 }

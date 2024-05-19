@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class UserMiddleware
 {
@@ -16,6 +17,25 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        dd($request->user());
+        // Check if the user is authenticated
+        if (auth()->check()) {
+            // Get the authenticated user's email
+            $email = auth()->user()->email;
+
+            // Check if a user with this email exists in the admins table
+            $admin = User::where('email', $email)->first();
+
+            // If the user is not in the admins table, return an error response
+            if (!$admin) {
+                return response([
+                    'message' => 'Unauthorized Admin',
+                    'email' => $email,
+                    'role' => auth()->user()->role,
+                ], 401);
+            }
+        }
+
+        // If the user is in the admins table, continue with the request
+        return $next($request);
     }
 }

@@ -29,30 +29,27 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
 
-// User routes with middleware to be created later
-Route::prefix('users')->group(function () {
-    Route::get('/home', UsersHome::class)->name('user.home');
-})->middleware([usermid::class, 'auth']);
+Route::middleware(['auth'])->group(function () {
+    // SACCO routes
+    Route::get('sacco/home', SaccoHome::class)->name('sacco.home')->middleware(saccomid::class);
 
-// Admin routes with middleware to be created later
-Route::prefix('admin')->group(function () {
-    Route::get('/home', AdminHome::class)->name('admin.home');
-})->middleware([adminmid::class, 'auth']);
+    // Admin routes
+    Route::get('admin/home', AdminHome::class)->name('admin.home')->middleware(adminmid::class);
 
-// Sacco routes with middleware to be created later
-Route::prefix('sacco')->group(function () {
-    Route::get('/home', SaccoHome::class)->name('sacco.home');
+    // User routes
+    Route::get('users/home', UsersHome::class)->name('user.home')->middleware(usermid::class);
 
-})->middleware([saccomid::class, 'auth']);
+    // Driver routes
+    Route::get('driver/home', DriverHome::class)->name('driver.home')->middleware(drivermid::class);
 
-
-// Driver routes with middleware to be created later
-Route::prefix('driver')->group(function () {
-    Route::get('/home', DriverHome::class)->name('driver.home');
-    
-})->middleware([drivermid::class, 'auth']);
+});
