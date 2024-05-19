@@ -1,13 +1,14 @@
 <?php
 
 // Middlewares
-use App\Http\Middleware\UserMiddleware;
-use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\SaccoMiddleware;
-use App\Http\Middleware\DriverMiddleware;
+use App\Http\Middleware\UserMiddleware as usermid;
+use App\Http\Middleware\AdminMiddleware as  adminmid;
+use App\Http\Middleware\SaccoMiddleware as saccomid;
+use App\Http\Middleware\DriverMiddleware as drivermid;
 
 use Livewire\Volt\Volt;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Livewire\HomePage;
 use App\Livewire\Users\Home as UsersHome;
 use App\Livewire\Admin\Home as AdminHome;
@@ -36,22 +37,22 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
 // User routes with middleware to be created later
 Route::prefix('users')->group(function () {
     Route::get('/home', UsersHome::class)->name('user.home');
-})->middleware(UserMiddleware::class);
+})->middleware([usermid::class, 'auth']);
 
 // Admin routes with middleware to be created later
 Route::prefix('admin')->group(function () {
     Route::get('/home', AdminHome::class)->name('admin.home');
-})->middleware(AdminMiddleware::class);
+})->middleware([adminmid::class, 'auth']);
 
 // Sacco routes with middleware to be created later
 Route::prefix('sacco')->group(function () {
     Route::get('/home', SaccoHome::class)->name('sacco.home');
 
-})->middleware(SaccoMiddleware::class);
+})->middleware([saccomid::class, 'auth']);
 
 
 // Driver routes with middleware to be created later
 Route::prefix('driver')->group(function () {
     Route::get('/home', DriverHome::class)->name('driver.home');
     
-})->middleware(DriverMiddleware::class);
+})->middleware([drivermid::class, 'auth']);
