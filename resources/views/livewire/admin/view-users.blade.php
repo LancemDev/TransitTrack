@@ -1,7 +1,5 @@
 <div>
- 
-    {{-- MAIN --}}
-    <x-main full-width>
+<x-main full-width>
         {{-- SIDEBAR --}}
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
  
@@ -39,7 +37,40 @@
  
         {{-- The `$slot` goes here --}}
         <x-slot:content>
-            Users here
+        @php
+            $users = \App\Models\User::all();
+
+            $headers = [
+                ['key' => 'id', 'label' => '#'],
+                ['key' => 'email', 'label' => 'E-mail Address'],
+                ['key' => 'name', 'label' => 'Name'],
+                ['key' => 'phone', 'label' => 'Phone'],
+                ['key' => 'actions', 'label' => 'Actions'],
+            ];
+        @endphp
+
+        <x-header title="Users" with-anchor separator />
+        <x-table :headers="$headers" :rows="$users" striped @row-click="alert($event.detail.name)">
+            @foreach($users as $user)
+                @scope('actions', $user)
+                    <x-button icon="o-trash" wire:click="delete({{ $user->id }})" spinner class="btn-sm" />
+                    <x-button icon="o-pencil" wire:click="edit({{ $user->id }})" spinner class="btn-sm" />
+                @endscope
+            @endforeach
+        </x-table>
+
+        <x-modal title="Edit User" wire:model="showEditModal">
+            <x-form wire:submit="update">
+                <x-input wire:model="name" label="Name" />
+                <x-input wire:model="email" label="E-mail Address" />
+                <x-input wire:model="phone" label="Phone" />
+
+                <x-slot:actions>    
+                    <x-button wire:click="closeModal" class="btn btn-primary" spinner label="Cancel" />
+                    <x-button type="submit" class="btn btn-success" label="Save" />
+                </x-slot:actions>
+            </x-form>
+        </x-modal>
         </x-slot:content>
     </x-main>
 </div>
