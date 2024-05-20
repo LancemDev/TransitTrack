@@ -39,28 +39,28 @@
         {{-- The `$slot` goes here --}}
         <x-slot:content>
         @php
-            $users = \App\Models\User::all();
+            $drivers = \App\Models\Driver::all();
 
             $headers = [
                 ['key' => 'id', 'label' => '#'],
-                ['key' => 'email', 'label' => 'E-mail Address'],
                 ['key' => 'name', 'label' => 'Name'],
+                ['key' => 'email', 'label' => 'E-mail Address'],
                 ['key' => 'phone', 'label' => 'Phone'],
                 ['key' => 'actions', 'label' => 'Actions'],
             ];
         @endphp
 
-        <x-header title="Users" with-anchor separator />
-        <x-table :headers="$headers" :rows="$users" striped @row-click="alert($event.detail.name)">
-            @foreach($users as $user)
-                @scope('actions', $user)
-                    <x-button icon="o-trash" wire:click="delete({{ $user->id }})" spinner class="btn-sm" />
-                    <x-button icon="o-pencil" wire:click="edit({{ $user->id }})" spinner class="btn-sm" />
+        <x-header title="Drivers" with-anchor separator />
+        <x-table :headers="$headers" :rows="$drivers" striped @row-click="alert($event.detail.name)">
+            @foreach($drivers as $driver)
+                @scope('actions', $driver)
+                    <x-button icon="o-trash" wire:click="delete({{ $driver->id }})" spinner class="btn-sm" />
+                    <x-button icon="o-pencil" wire:click="edit({{ $driver->id }})" spinner class="btn-sm" />
                 @endscope
             @endforeach
         </x-table>
 
-        <x-modal title="Edit User" wire:model="showEditModal">
+        <x-modal title="Edit Driver" wire:model="showEditModal">
             <x-form wire:submit="update">
                 <x-input wire:model="name" label="Name" />
                 <x-input wire:model="email" label="E-mail Address" />

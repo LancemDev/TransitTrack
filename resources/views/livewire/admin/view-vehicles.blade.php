@@ -39,32 +39,60 @@
         {{-- The `$slot` goes here --}}
         <x-slot:content>
         @php
-            $users = \App\Models\User::all();
+            $vehicles = \App\Models\Vehicle::all();
 
             $headers = [
                 ['key' => 'id', 'label' => '#'],
-                ['key' => 'email', 'label' => 'E-mail Address'],
-                ['key' => 'name', 'label' => 'Name'],
-                ['key' => 'phone', 'label' => 'Phone'],
+                ['key' => 'number_plate', 'label' => 'Number Plate'],
+                ['key' => 'type', 'label' => 'Type'],
+                ['key' => 'color', 'label' => 'Color'],
                 ['key' => 'actions', 'label' => 'Actions'],
             ];
         @endphp
 
-        <x-header title="Users" with-anchor separator />
-        <x-table :headers="$headers" :rows="$users" striped @row-click="alert($event.detail.name)">
-            @foreach($users as $user)
-                @scope('actions', $user)
-                    <x-button icon="o-trash" wire:click="delete({{ $user->id }})" spinner class="btn-sm" />
-                    <x-button icon="o-pencil" wire:click="edit({{ $user->id }})" spinner class="btn-sm" />
+        <x-header title="Vehicles" with-anchor separator />
+        <x-table :headers="$headers" :rows="$vehicles" striped @row-click="alert($event.detail.name)">
+            @foreach($vehicles as $vehicle)
+                @scope('actions', $vehicle)
+                    <x-button icon="o-trash" wire:click="delete({{ $vehicle->id }})" spinner class="btn-sm" />
+                    <x-button icon="o-pencil" wire:click="edit({{ $vehicle->id }})" spinner class="btn-sm" />
                 @endscope
             @endforeach
         </x-table>
 
-        <x-modal title="Edit User" wire:model="showEditModal">
+        <x-modal title="Edit Vehicle" wire:model="showEditModal">
             <x-form wire:submit="update">
-                <x-input wire:model="name" label="Name" />
-                <x-input wire:model="email" label="E-mail Address" />
-                <x-input wire:model="phone" label="Phone" />
+                <x-input wire:model="number_plate" label="Number Plate" />
+                @php
+                    $types =  [
+                                    [
+                                        'id' => 'bus',
+                                        'name' => 'bus'
+                                    ],
+                                    [
+                                        'id' => 'matatu',
+                                        'name' => 'matatu'
+                                    ],
+                                    [
+                                        'id' => 'taxi',
+                                        'name' => 'taxi'
+                                    ],
+                                    [
+                                        'id' => 'lorry',
+                                        'name' => 'lorry'
+                                    ],
+                                    [
+                                        'id' => 'motorcycle',
+                                        'name' => 'motorcycle'
+                                    ],
+                                    [
+                                        'id' => 'bicycle',
+                                        'name' => 'bicycle'
+                                    ],
+                                ];
+                @endphp
+                <x-select label="Type" :options="$types" wire:model="type" />
+                <x-input wire:model="color" label="Color" />
 
                 <x-slot:actions>    
                     <x-button wire:click="closeModal" class="btn btn-primary" spinner label="Cancel" />

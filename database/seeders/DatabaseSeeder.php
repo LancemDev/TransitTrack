@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // Invoke other seeders
         $this->call(UserSeeder::class);
+        $this->call(SaccoSeeder::class);
+        $this->call(DriverSeeder::class);
     }
 }
