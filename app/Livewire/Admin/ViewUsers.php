@@ -36,14 +36,6 @@ class ViewUsers extends Component
 
     public function update()
     {
-        // $this->success('Backend validation is working fine');
-        // $this->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email',
-        //     'role' => 'required',
-        //     'phone' => 'required'
-        // ]);
-
         $user = User::find($this->userId);
         $user->name = $this->name;
         $user->email = $this->email;

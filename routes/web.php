@@ -51,7 +51,7 @@ Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home')->middleware
 Route::get('admin/home', AdminHome::class)->name('admin.home')->middleware('auth:admin')->middleware(adminmid::class);
 Route::get('admin/view-users', ViewUsers::class)->name('admin.view-users')->middleware('auth:admin')->middleware(adminmid::class);
 // Route::get('admin/add-user', AddUser::class)->name('admin.add-user')->middleware('auth:admin')->middleware(adminmid::class);
-// Route::get('admin/view-saccos', ViewSaccos::class)->name('admin.view-saccos')->middleware('auth:admin')->middleware(adminmid::class);
+Route::get('admin/view-saccos', ViewSaccos::class)->name('admin.view-saccos')->middleware('auth:admin')->middleware(adminmid::class);
 // Route::get('admin/add-sacco', AddSacco::class)->name('admin.add-sacco')->middleware('auth:admin')->middleware(adminmid::class);
 
 // User routes
