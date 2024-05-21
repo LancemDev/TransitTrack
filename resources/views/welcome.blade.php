@@ -8,41 +8,54 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>
 
     <body>
-        <header >
+        <header>
             <nav>
-                <div>
-                    <a href="#">Brand</a>
-        
-                    <!-- Mobile menu button -->
-                    <div>
-                        <button type="button" aria-label="toggle menu"> 
-                        </button>
-                    </div>
+                {{-- Brand Logo --}}
+                <div class="logo">
+                    <a href="{{ url('/')}}">TransitTrack</a>
                 </div>
-        
+
+                <div>
+                    <a href="{{ url('/')}}">Home</a>
+                    <a href="About-Us">About Us</a>
+                    <a href="Traffic-Highlights">Traffic Highlights</a>
+                    <a href="Contact-Us">Get In Touch</a>
+                    <button class="login">
+                        <a href="#">Login</a>
+                    </button>
+                </div>
+{{-- 
+                <!-- Mobile menu button -->
+                <div>
+                    <button type="button" aria-label="toggle menu"> 
+                        <i class="uil uil-bars"></i>
+                    </button>
+                </div>
+
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                 <div>
-                    <a href="#">Home</a>
-                    <a href="#">#</a>
-                    <a href="#">#</a>
-                    <a href="#">#</a>
-                    <a href="#">Get In Touch</a>
-                </div>
+                    <a href="{{ url('/')}}">Home</a>
+                    <a href="About-Us">About Us</a>
+                    <a href="Traffic-Highlights">Traffic Highlights</a>
+                    <a href="Contact-Us">Get In Touch</a>
+                    <a href="#">Login</a>
+                </div> --}}
             </nav>
         
             <section>
                 <div>
-                    <p>Lorem ipsum dolor</p>
-                    <h2>Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit</h2>
+                    <p class="above_title">Lorem ipsum dolor</p>
+                    <h2 class="above_phrase">Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit</h2>
         
                     <div>
-                        <a href="#">Get In Touch</a>
+                        <a href="#">Get Started</a>
                     </div>
                 </div>
             </section>
