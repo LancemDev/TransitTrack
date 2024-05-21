@@ -23,6 +23,16 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        for ($i = 1; $i <= 5; $i++) {
+            DB::table('users')->insert([
+                'name' => 'User ' . $i,
+                'email' => 'user' . $i . '@example.com',
+                'phone' => '071254567' . $i,
+                'password' => bcrypt('password'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
 
         DB::table('sacco_admins')->insert([
             'name' => 'Jane Doe',
