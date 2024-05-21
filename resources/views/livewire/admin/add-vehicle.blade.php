@@ -39,13 +39,39 @@
             {{-- The `$slot` goes here --}}
             <x-slot:content>
             <x-form wire:submit.prevent="save">
-                <x-header title="Add Sacco" with-anchor separator />
-                <x-input label="Name" placeholder="Enter name" wire:model="name" />
-                <x-input label="Registration Number" placeholder="Enter reg number" wire:model="registration_number" />
-                <x-input label="Email" placeholder="Enter email" wire:model="email" />
-                <x-input label="Phone" placeholder="Enter phone" wire:model="phone" />
-                <x-input label="Location" placeholder="Enter location" wire:model="address" />
-                <x-input label="Password" placeholder="Enter password" wire:model="password" type="password" />
+                <x-header title="Add Vehicle" with-anchor separator />
+                <x-input label="Registration Number/ Number Plate" placeholder="Enter reg no" wire:model="number_plate" />
+                @php
+                    $types =  [
+                                    [
+                                        'id' => 'bus',
+                                        'name' => 'bus'
+                                    ],
+                                    [
+                                        'id' => 'matatu',
+                                        'name' => 'matatu'
+                                    ],
+                                    [
+                                        'id' => 'taxi',
+                                        'name' => 'taxi'
+                                    ],
+                                    [
+                                        'id' => 'lorry',
+                                        'name' => 'lorry'
+                                    ],
+                                    [
+                                        'id' => 'motorcycle',
+                                        'name' => 'motorcycle'
+                                    ],
+                                    [
+                                        'id' => 'bicycle',
+                                        'name' => 'bicycle'
+                                    ],
+                                ];
+                @endphp
+                <x-select label="Type" :options="$types" wire:model="type" />
+                <x-input label="Color" placeholder="Enter color" wire:model="color" />
+                
                 <x-slot:actions>
                     <x-button type="submit" label="Save" spinner save class="btn-primary" />
                 </x-slot:actions>

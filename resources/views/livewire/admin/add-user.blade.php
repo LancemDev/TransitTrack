@@ -39,13 +39,13 @@
             {{-- The `$slot` goes here --}}
             <x-slot:content>
             <x-form wire:submit.prevent="save">
-                <x-header title="Add Sacco" with-anchor separator />
+                <x-header title="Add User" with-anchor separator />
                 <x-input label="Name" placeholder="Enter name" wire:model="name" />
-                <x-input label="Registration Number" placeholder="Enter reg number" wire:model="registration_number" />
                 <x-input label="Email" placeholder="Enter email" wire:model="email" />
                 <x-input label="Phone" placeholder="Enter phone" wire:model="phone" />
-                <x-input label="Location" placeholder="Enter location" wire:model="address" />
                 <x-input label="Password" placeholder="Enter password" wire:model="password" type="password" />
+                <x-input label="Confirm Password" type="password" placeholder="Confirm password" wire:model="password_confirmation" />
+                
                 <x-slot:actions>
                     <x-button type="submit" label="Save" spinner save class="btn-primary" />
                 </x-slot:actions>
