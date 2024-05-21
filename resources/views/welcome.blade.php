@@ -22,14 +22,14 @@
                     <a href="{{ url('/')}}">TransitTrack</a>
                 </div>
 
-                <div>
+                <div class="links">
                     <a href="{{ url('/')}}">Home</a>
                     <a href="About-Us">About Us</a>
                     <a href="Traffic-Highlights">Traffic Highlights</a>
                     <a href="Contact-Us">Get In Touch</a>
-                    <button class="login">
-                        <a href="#">Login</a>
-                    </button>
+                    <a href="#">
+                        <button class="login">Login</button>
+                    </a>
                 </div>
 {{-- 
                 <!-- Mobile menu button -->
