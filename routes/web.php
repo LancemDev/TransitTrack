@@ -17,11 +17,14 @@ use App\Livewire\Driver\Home as DriverHome;
 use App\Http\Controllers\AuthController;
 
 use App\Livewire\Admin\ViewUsers;
-use App\Livewire\Admin\AddUser;
 use App\Livewire\Admin\ViewSaccos;
-use App\Livewire\Admin\AddSacco;
 use App\Livewire\Admin\ViewDrivers;
 use App\Livewire\Admin\ViewVehicles;
+
+use App\Livewire\Admin\AddSacco;
+use App\Livewire\Admin\AddVehicle as AddVehicles;
+use App\Livewire\Admin\AddDrivers as AddDriver;
+use App\Livewire\Admin\AddUser;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,7 +52,9 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
 // SACCO routes
 Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home')->middleware('auth:sacco_admin')->middleware(saccomid::class);
 
-// Admin routes
+/*
+ * Admin routes
+ */
 Route::get('admin/home', AdminHome::class)->name('admin.home')->middleware('auth:admin')->middleware(adminmid::class);
 Route::get('admin/view-users', ViewUsers::class)->name('admin.view-users')->middleware('auth:admin')->middleware(adminmid::class);
 // Route::get('admin/add-user', AddUser::class)->name('admin.add-user')->middleware('auth:admin')->middleware(adminmid::class);
@@ -58,8 +63,13 @@ Route::get('admin/view-saccos', ViewSaccos::class)->name('admin.view-saccos')->m
 Route::get('admin/view-drivers', ViewDrivers::class)->name('admin.view-drivers')->middleware('auth:admin')->middleware(adminmid::class);
 Route::get('admin/view-vehicles', ViewVehicles::class)->name('admin.view-vehicles')->middleware('auth:admin')->middleware(adminmid::class);
 Route::get('admin/add-user', AddUser::class)->name('admin.add-user')->middleware('auth:admin')->middleware(adminmid::class);
+Route::get('admin/add-sacco', AddSacco::class)->name('admin.add-sacco')->middleware('auth:admin')->middleware(adminmid::class);
+Route::get('admin/add-vehicle', AddVehicles::class)->name('admin.add-vehicle')->middleware('auth:admin')->middleware(adminmid::class);
+Route::get('admin/add-driver', AddDriver::class)->name('admin.add-driver')->middleware('auth:admin')->middleware(adminmid::class);
 
-// User routes
+/*
+ * User routes
+ */
 Route::get('users/home', UsersHome::class)->name('user.home')->middleware('auth:users')->middleware(usermid::class);
 
 // Driver routes
