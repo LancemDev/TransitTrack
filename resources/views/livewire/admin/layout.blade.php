@@ -1,10 +1,23 @@
 <div>
+{{-- NAVBAR mobile only --}}
+    <x-nav sticky class="lg:hidden">
+        <x-slot:brand>
+            <div class="ml-5 pt-5">App</div>
+        </x-slot:brand>
+        <x-slot:actions>
+            <label for="main-drawer" class="lg:hidden mr-3">
+                <x-icon name="o-bars-3" class="cursor-pointer" />
+            </label>
+        </x-slot:actions>
+    </x-nav>
  
     {{-- MAIN --}}
     <x-main full-width>
         {{-- SIDEBAR --}}
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
  
+            {{-- BRAND --}}
+            <div class="ml-5 pt-5">App</div>
  
             {{-- MENU --}}
             <x-menu activate-by-route>
@@ -22,14 +35,7 @@
                     <x-menu-separator />
                 @endif
  
-                <x-menu-item title="View Users" icon="o-sparkles" link="/admin/view-users" />
-                <x-menu-item title="Add User" icon="o-sparkles" link="/admin/add-user" />
-                <x-menu-item title="View Saccos" icon="o-sparkles" link="/admin/view-saccos" />
-                <x-menu-item title="Add Sacco" icon="o-sparkles" link="/admin/add-sacco" />
-                <x-menu-item title="View Drivers" icon="o-sparkles" link="/admin/view-drivers" />
-                <x-menu-item title="Add Driver" icon="o-sparkles" link="/admin/add-driver" />
-                <x-menu-item title="View Vehicles" icon="o-sparkles" link="/admin/view-vehicles" />
-                <x-menu-item title="Add Vehicle" icon="o-sparkles" link="/admin/add-vehicle" />
+                <x-menu-item title="Hello" icon="o-sparkles" link="/" />
                 <x-menu-sub title="Settings" icon="o-cog-6-tooth">
                     <x-menu-item title="Wifi" icon="o-wifi" link="####" />
                     <x-menu-item title="Archives" icon="o-archive-box" link="####" />
@@ -39,7 +45,7 @@
  
         {{-- The `$slot` goes here --}}
         <x-slot:content>
-            Users here
+            Hello Mate 2
         </x-slot:content>
     </x-main>
 </div>

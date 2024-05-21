@@ -1,7 +1,5 @@
 <div>
- 
-    {{-- MAIN --}}
-    <x-main full-width>
+<x-main full-width>
         {{-- SIDEBAR --}}
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
  
@@ -33,13 +31,47 @@
                 <x-menu-sub title="Settings" icon="o-cog-6-tooth">
                     <x-menu-item title="Wifi" icon="o-wifi" link="####" />
                     <x-menu-item title="Archives" icon="o-archive-box" link="####" />
+                    <x-menu-item title="Log out" icon="o-power" link="/logout" />
                 </x-menu-sub>
             </x-menu>
         </x-slot:sidebar>
  
         {{-- The `$slot` goes here --}}
         <x-slot:content>
-            Users here
+        @php
+            $drivers = \App\Models\Driver::all();
+
+            $headers = [
+                ['key' => 'id', 'label' => '#'],
+                ['key' => 'name', 'label' => 'Name'],
+                ['key' => 'email', 'label' => 'E-mail Address'],
+                ['key' => 'phone', 'label' => 'Phone'],
+                ['key' => 'actions', 'label' => 'Actions'],
+            ];
+        @endphp
+
+        <x-header title="Drivers" with-anchor separator />
+        <x-table :headers="$headers" :rows="$drivers" striped @row-click="alert($event.detail.name)">
+            @foreach($drivers as $driver)
+                @scope('actions', $driver)
+                    <x-button icon="o-trash" wire:click="delete({{ $driver->id }})" spinner class="btn-sm" />
+                    <x-button icon="o-pencil" wire:click="edit({{ $driver->id }})" spinner class="btn-sm" />
+                @endscope
+            @endforeach
+        </x-table>
+
+        <x-modal title="Edit Driver" wire:model="showEditModal">
+            <x-form wire:submit="update">
+                <x-input wire:model="name" label="Name" />
+                <x-input wire:model="email" label="E-mail Address" />
+                <x-input wire:model="phone" label="Phone" />
+
+                <x-slot:actions>    
+                    <x-button wire:click="closeModal" class="btn btn-primary" spinner label="Cancel" />
+                    <x-button type="submit" class="btn btn-success" label="Save" />
+                </x-slot:actions>
+            </x-form>
+        </x-modal>
         </x-slot:content>
     </x-main>
 </div>

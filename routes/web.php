@@ -16,6 +16,13 @@ use App\Livewire\Sacco\Home as SaccoHome;
 use App\Livewire\Driver\Home as DriverHome;
 use App\Http\Controllers\AuthController;
 
+use App\Livewire\Admin\ViewUsers;
+use App\Livewire\Admin\AddUser;
+use App\Livewire\Admin\ViewSaccos;
+use App\Livewire\Admin\AddSacco;
+use App\Livewire\Admin\ViewDrivers;
+use App\Livewire\Admin\ViewVehicles;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -44,6 +51,12 @@ Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home')->middleware
 
 // Admin routes
 Route::get('admin/home', AdminHome::class)->name('admin.home')->middleware('auth:admin')->middleware(adminmid::class);
+Route::get('admin/view-users', ViewUsers::class)->name('admin.view-users')->middleware('auth:admin')->middleware(adminmid::class);
+// Route::get('admin/add-user', AddUser::class)->name('admin.add-user')->middleware('auth:admin')->middleware(adminmid::class);
+Route::get('admin/view-saccos', ViewSaccos::class)->name('admin.view-saccos')->middleware('auth:admin')->middleware(adminmid::class);
+// Route::get('admin/add-sacco', AddSacco::class)->name('admin.add-sacco')->middleware('auth:admin')->middleware(adminmid::class);
+Route::get('admin/view-drivers', ViewDrivers::class)->name('admin.view-drivers')->middleware('auth:admin')->middleware(adminmid::class);
+Route::get('admin/view-vehicles', ViewVehicles::class)->name('admin.view-vehicles')->middleware('auth:admin')->middleware(adminmid::class);
 
 // User routes
 Route::get('users/home', UsersHome::class)->name('user.home')->middleware('auth:users')->middleware(usermid::class);

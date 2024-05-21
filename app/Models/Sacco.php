@@ -4,19 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Driver extends Authenticatable
+class Sacco extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     protected $fillable = [
         'name',
+        'registration_number',
         'email',
         'phone',
+        'address',
+        'logo',
         'password',
-        'last_login',
-        'last_logout'
     ];
 }
