@@ -22,7 +22,7 @@ use App\Livewire\Admin\ViewDrivers;
 use App\Livewire\Admin\ViewVehicles;
 
 use App\Livewire\Admin\AddSacco;
-use App\Livewire\Admin\AddVehicle as AddVehicles;
+use App\Livewire\Admin\AddVehicle;
 use App\Livewire\Admin\AddDrivers as AddDriver;
 use App\Livewire\Admin\AddUser;
 
@@ -31,6 +31,8 @@ Route::get('/', function () {
 });
 
 Route::get('/home', HomePage::class);
+
+/* Authentication routes */
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -40,20 +42,40 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::get('/logout', function () {
-    Auth::logout();
+    $guards = array_keys(config('auth.guards'));
+
+    foreach ($guards as $guard) {
+        if (auth()->guard($guard)->check()) {
+            auth()->guard($guard)->logout();
+        }
+    }
+
     return redirect('/');
 })->name('logout');
+
+Route::get('/auth-check', function(){
+    return response()->json([
+        'user' => auth()->user(),
+        'guard' => auth()->getDefaultDriver()
+    ]);
+});
 
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
 
-// SACCO routes
+/*
+ * -------------------------
+ * Sacco Admin routes
+ * -------------------------
+ */
 Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home')->middleware('auth:sacco_admin')->middleware(saccomid::class);
 
 /*
+ * -------------------------
  * Admin routes
+ * -------------------------
  */
 Route::get('admin/home', AdminHome::class)->name('admin.home')->middleware('auth:admin')->middleware(adminmid::class);
 Route::get('admin/view-users', ViewUsers::class)->name('admin.view-users')->middleware('auth:admin')->middleware(adminmid::class);
@@ -64,11 +86,13 @@ Route::get('admin/view-drivers', ViewDrivers::class)->name('admin.view-drivers')
 Route::get('admin/view-vehicles', ViewVehicles::class)->name('admin.view-vehicles')->middleware('auth:admin')->middleware(adminmid::class);
 Route::get('admin/add-user', AddUser::class)->name('admin.add-user')->middleware('auth:admin')->middleware(adminmid::class);
 Route::get('admin/add-sacco', AddSacco::class)->name('admin.add-sacco')->middleware('auth:admin')->middleware(adminmid::class);
-Route::get('admin/add-vehicle', AddVehicles::class)->name('admin.add-vehicle')->middleware('auth:admin')->middleware(adminmid::class);
+Route::get('admin/add-vehicle', AddVehicle::class)->name('admin.add-vehicle')->middleware('auth:admin')->middleware(adminmid::class);
 Route::get('admin/add-driver', AddDriver::class)->name('admin.add-driver')->middleware('auth:admin')->middleware(adminmid::class);
 
 /*
+ * -------------------------
  * User routes
+ * -------------------------
  */
 Route::get('users/home', UsersHome::class)->name('user.home')->middleware('auth:users')->middleware(usermid::class);
 

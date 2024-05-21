@@ -51,30 +51,31 @@ class AuthController extends Controller
             $guard = 'sacco_admin';
         }
 
-        // Check email in Driver table if not found in users and sacco_admins tables
-        if (!$user) {
-            $user = Driver::where('email', $fields['email'])->first();
-            $guard = 'driver';
-        }
-
         // Check email in Admin table if not found in users, sacco_admins, and drivers tables
         if (!$user) {
             $user = Admin::where('email', $fields['email'])->first();
             $guard = 'admin';
         }
 
+        // Check email in Driver table if not found in users and sacco_admins tables
+        if (!$user) {
+            $user = Driver::where('email', $fields['email'])->first();
+            $guard = 'driver';
+        }
+
         // Check password
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
-                'message' => 'Bad creds'
+                'message' => 'Bad creds',
+                'guard' => $guard
             ], 401);
         }
 
         // Log in the user with the specific guard
         auth()->guard($guard)->login($user);
 
-        // // Redirect to the user's role home
-        return redirect()->route($guard . '.home')->with('success', 'Login successful');
-        // dd($guard);
+        // Redirect to the user's role home
+        $route = $guard == 'web' ? 'users.home' : $guard . '.home';
+        return redirect()->route($route)->with('success', 'Login successful');
     }
 }
