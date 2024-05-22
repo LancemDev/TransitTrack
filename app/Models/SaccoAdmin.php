@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class SaccoAdmin extends Authenticatable
+class SaccoAdmin extends Model
 {
     use HasFactory, Notifiable;
 
