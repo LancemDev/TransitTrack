@@ -39,7 +39,7 @@
  
         {{-- The `$slot` goes here --}}
         <x-slot:content>
-            Users here
+            Welcome :)
         </x-slot:content>
     </x-main>
 </div>

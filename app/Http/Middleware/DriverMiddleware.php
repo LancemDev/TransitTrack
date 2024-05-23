@@ -16,20 +16,20 @@ class DriverMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if an driver is authenticated
-        if (auth()->guard('driver')->check()) {
-            // Get the authenticated driver's email
-            $email = auth()->guard('driver')->user()->email;
+        // Check if a user is authenticated
+        if (auth()->check()) {
+            // Get the authenticated user's email
+            $email = auth()->user()->email;
 
             // Check if a user with this email exists in the drivers table
             $driver = Driver::where('email', $email)->first();
 
-            // If the user is not in the admins table, return an error response
+            // If the user is not in the drivers table, return an error response
             if (!$driver) {
                 return response([
                     'message' => 'Unauthorized Driver',
                     'email' => $email,
-                    'role' => auth()->guard('driver')->user()->role,
+                    'role' => auth()->user()->role,
                 ], 401);
             }
         }
