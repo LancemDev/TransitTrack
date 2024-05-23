@@ -16,10 +16,10 @@ class SaccoMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if an sacco_admin is authenticated
-        if (auth()->guard('sacco_admin')->check()) {
-            // Get the authenticated sacco admin's email
-            $email = auth()->guard('sacco_admin')->user()->email;
+        // Check if a user is authenticated
+        if (auth()->check()) {
+            // Get the authenticated user's email
+            $email = auth()->user()->email;
 
             // Check if a user with this email exists in the sacco admins table
             $admin = SaccoAdmin::where('email', $email)->first();
@@ -29,7 +29,7 @@ class SaccoMiddleware
                 return response([
                     'message' => 'Unauthorized Sacco Admin',
                     'email' => $email,
-                    'role' => auth()->guard('sacco_admin')->user()->role,
+                    'role' => auth()->user()->role,
                 ], 401);
             }
         }
