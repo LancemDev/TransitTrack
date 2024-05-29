@@ -26,6 +26,9 @@ use App\Livewire\Admin\AddVehicle;
 use App\Livewire\Admin\AddDrivers as AddDriver;
 use App\Livewire\Admin\AddUser;
 
+use App\Livewire\Sacco\ManageDrivers;
+use App\Livewire\Sacco\ManageVehicles;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -71,6 +74,8 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
  * -------------------------
  */
 Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home');
+Route::get('sacco/manage-drivers', ManageDrivers::class)->name('sacco.manage-drivers');
+Route::get('sacco/manage-vehicles', ManageVehicles::class)->name('sacco.manage-vehicles');
 // Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home')->middleware('auth:sacco_admin')->middleware(saccomid::class);
 
 /*
