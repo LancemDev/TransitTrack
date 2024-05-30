@@ -38,7 +38,7 @@ nav{
     transform: scaleX(0);
     background: white;
     color: white;
-    transition: .5s ease;
+    transition: 1s ease;
 }
 
 .links a:hover::after{
