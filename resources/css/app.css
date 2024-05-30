@@ -57,3 +57,53 @@ nav{
 .hover\:bg-theme:hover{
     background-color: #E4DA80;
 }
+
+.title-text{
+    text-align: center;
+    padding-top: 0px;
+    z-index: 1;
+    padding-top: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.title-text > hr{
+    background-color: #000;
+    height: 5px;
+    width: 10%;
+    
+}
+
+.title-text > p{
+    margin: auto;
+    font-size: 2em;
+    font-weight: bold;
+    color: #000;
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.title-text > p::after{
+    content: '';
+    width: 50px;
+    height: 35px;
+    background: linear-gradient(#000, #fff);
+    position: absolute;
+    top: -20px;
+    left: 0;
+    z-index: -1;
+    transform: rotate(0deg);
+    border-top-left-radius: 35px;
+    border-bottom-right-radius:35px;
+    margin-top: 10px;
+}
+
+.about-us{
+    font-size: 1.5em;
+    color: #000;
+}

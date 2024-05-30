@@ -22,7 +22,7 @@
 
     <!-- component -->
     <div>
-        <header class="bg-white" x-data="{ isOpen: false }">
+        <header class="bg-gray-800" x-data="{ isOpen: false }">
             <nav class="">
                 <div class="flex items-center justify-between">
                     <a class="logo-font font-bold text-black transition-colors duration-300 transform md:text-2xl hover:text-white"
@@ -58,10 +58,10 @@
                 </div>
             </nav>
         
-            <section class="flex items-center justify-center" style="height: 500px;">
+            <section class="flex items-center justify-center" style="height: 600px;">
                 <div class="text-center">
-                    <h2 class="mt-6 mb-6 text-3xl font-bold text-black md:text-5xl kaushan-script-regular">TransitTrack</h2>
-                    <p class="text-3xl font-medium tracking-wider text-black">Efficient and Convinient Public Transportation for Everyone</p>
+                    <h2 class="mt-6 mb-6 text-3xl font-bold text-white md:text-5xl kaushan-script-regular">TransitTrack</h2>
+                    <p class="text-3xl font-medium tracking-wider text-white">Efficient and Convinient Public Transportation for Everyone</p>
         
                     <div class="flex justify-center mt-8">
                         <a class="px-10 py-5 text-lg font-medium text-white transition-colors duration-300 transform bg-black rounded hover:bg-theme"
@@ -73,19 +73,35 @@
         
         
         <section class="bg-white" id="about-us">
+            <div class="title-text">
+                <p>Who Are We?</p>
+                <hr>
+            </div>
+            <div class="about-us max-w-7xl px-6 py-16 mx-auto">
+                <p>Welcome to TransitTrack, where we revolutionize the way you experience public transportation.
+                Our mission is to make public transit more efficient, reliable, and convenient for both drivers and passengers.</p>
+                <br>
+                <b>Our Commitment</b>
+                <p>
+                    At TransitTrack, we are dedicated to creating a seamless public transportation experience.
+                    We continuously innovate and improve our platform based on your feedback and the latest technology trends. 
+                    Our goal is to build a connected community where public transit is a reliable and preferred choice for everyone.
+                </p>
+            </div>
             <div class="max-w-5xl px-6 py-16 mx-auto">
                 <div class="items-center md:flex md:space-x-6">
                     <div class="md:w-1/2">
-                        <h3 class="text-2xl font-semibold text-gray-800">Passengers</h3>
-                        <p class="max-w-md mt-4 text-gray-600">View live matatu positions and any other incoming traffic</p>
-                        <a href="#" class="block mt-8 text-indigo-700 underline">View</a>
+                        <h3 class="text-2xl font-semibold text-gray-800">Drivers</h3>
+                        <p class="max-w-md mt-4 text-gray-600">Show where you are to your potential passengers, and clock in and out of work.</p>
+                        <a href="#" class="block mt-8 text-indigo-700 underline">Start</a>
                     </div>
         
                     <div class="mt-8 md:mt-0 md:w-1/2">
                         <div class="flex items-center justify-center">
                             <div class="max-w-md">
                                 <img class="object-cover object-center w-full rounded-md shadow" style="height: 500px;"
-                                    src="https://images.unsplash.com/photo-1618346136472-090de27fe8b4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=673&q=80">
+                                    src="https://images.unsplash.com/photo-1604616410903-390e7118a3e1?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                                    
                             </div>
                         </div>
                     </div>
@@ -100,17 +116,15 @@
                         <div class="flex items-center justify-center">
                             <div class="max-w-md">
                                 <img class="object-cover object-center w-full rounded-md shadow" style="height: 500px;"
-                                    src="https://images.unsplash.com/photo-1616874535244-73aea5daadb9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">
+                                    src="https://images.unsplash.com/photo-1604232078618-0a643e60cdcb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
                             </div>
                         </div>
                     </div>
         
                     <div class="mt-8 md:mt-0 md:w-1/2">
-                        <h3 class="text-2xl font-semibold text-gray-800">Lorem ipsum dolor sit <br> amet, consectetur</h3>
-                        <p class="max-w-md mt-4 text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <a href="#" class="block mt-8 text-indigo-700 underline">Experienced team</a>
+                        <h3 class="text-2xl font-semibold text-gray-800">Passengers</h3>
+                        <p class="max-w-md mt-4 text-gray-600">View live matatu positions and any other incoming traffic</p>
+                        <a href="#" class="block mt-8 text-indigo-700 underline">View</a>
                     </div>
                 </div>
             </div>
