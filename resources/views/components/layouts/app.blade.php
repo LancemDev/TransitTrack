@@ -26,5 +26,7 @@
  
     {{--  TOAST area --}}
     <x-toast />
+
+    <x-spotlight />
 </body>
 </html>

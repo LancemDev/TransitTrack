@@ -38,6 +38,7 @@
                     <x-menu-separator />
                 @endif
  
+                <x-button @click="$wire.searchModal = true" icon="o-sparkles" class="btn-circle btn-ghost btn-xs" tooltip-left="search" />
                 <x-menu-item title="Hello" icon="o-sparkles" link="/" />
                 <x-menu-sub title="Settings" icon="o-cog-6-tooth">
                     <x-menu-item title="Wifi" icon="o-wifi" link="####" />
@@ -48,6 +49,17 @@
  
         {{-- The `$slot` goes here --}}
         <x-slot:content>
+            {{-- Search Modal --}}
+            <x-modal wire:model="searchModal" title="Search" persistent backdrop-blur>
+                <x-form wire:submit.live="search">
+                    <x-input wire:model.live.debounce="searchQuery" clearable icon="o-magnifying-glass" />
+                    <div wire:model=result></div>
+                    <x-slot:actions>
+                        <x-button class="btn-primary" type="submit" label="Search" />
+                    </x-slot:actions>
+                </x-form>
+            </x-modal>
+
             <div id="loading" class="spinner"></div>
             <div id="map" style="height: 1000px;"></div>
             
