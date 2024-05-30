@@ -65,7 +65,7 @@
         
             <section class="hero-cta overlay flex items-center justify-center" style="height: 500px;">
                 <div class="text-center">
-                    <h2 class="mt-6 mb-6 text-xl font-bold text-white md:text-5xl">TransitTrack </h2>
+                    <h2 class="mt-6 mb-6 text-xl font-bold text-white md:text-5xl">Who are we?</h2>
                     <p class="kaushan-script-regular text-3xl tracking-wider text-gray-300">Efficient and Convinient Public Transportation for Everyone</p>
                     
         

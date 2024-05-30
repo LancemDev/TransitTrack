@@ -2,90 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'ABeeZee', sans-serif;
-}
-
-header{
-    
+.bg-theme{
+    background-color: #E4DA80; 
 }
 
 nav{
     margin: 0px;
-    padding: 40px;
+    padding: 50px;
     display: flex;
     justify-content: space-between;
     background-color: #E4DA80;
     font-family: 'Aclonica', sans-serif;
 }
 
-.logo{
-    margin-top: 10px;
-}
-
-.logo a{
-    text-decoration: none;
-    color: black;
+.logo-font{
     font-size: 2em;
-    font-weight: 900;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.links{
-    display: flex;
-    justify-content: space-between;
 }
 
 .links a{
     text-decoration: none;
     font-size: 1.2em;
-    color: black; 
     position: relative; 
+    margin-left: 30px;
 }
 
-.links a:not(:last-child)::after{
+.links a::after{
     content: '';
     text-align: center;
     position: absolute;
     width: 100%;
     height: 3px;
-    bottom: 10px;
+    bottom: -10px;
     left: 1px;
     transform-origin: center;
     transform: scaleX(0);
-    background: black;
-    color: black;
+    background: white;
+    color: white;
     transition: .5s ease;
 }
 
 .links a:hover::after{
     transform-origin: center;
     transform: scaleX(1);
-    background: black;
-    color: black;
-}
-
-.links a:not(:last-child){
-    /* padding-left: 30px; */
-    margin: 20px 0 0 20px;
-}
-
-.login{
-    border: none;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.785);
-    color: white;
-    padding: 20px;
-    margin-left: 20px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: 1s ease-in-out;
-}
-
-.login:hover{
-    background-color: rgba(0, 0, 0, 0.975);
+    background: white;
     color: white;
 }
 
@@ -94,17 +53,7 @@ nav{
     font-weight: 400;
     font-style: normal;
 }
-  
-section.hero-cta{
-    background: url('Matatu_culture_kenya.jpg');
-    background-size: cover;
-    /* background-color: rgba(101, 225, 196, 0.9); */
+
+.hover\:bg-theme:hover{
+    background-color: #E4DA80;
 }
-
-/* section.hero-cta:hover{
-    opacity: 0.6;
-} */
-
-
-
-

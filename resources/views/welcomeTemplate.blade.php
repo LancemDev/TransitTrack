@@ -8,6 +8,8 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -20,14 +22,14 @@
 
     <!-- component -->
     <div>
-        <header class="bg-gray-800" x-data="{ isOpen: false }">
-            <nav class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
+        <header class="bg-white-800" x-data="{ isOpen: false }">
+            <nav class="">
                 <div class="flex items-center justify-between">
-                    <a class="text-xl font-bold text-white transition-colors duration-300 transform md:text-2xl hover:text-indigo-400"
-                        href="#">Brand</a>
+                    <a class="logo-font font-bold text-black transition-colors duration-300 transform md:text-2xl hover:text-white"
+                    href="{{ url('/')}}">TransitTrack</a>
         
                     <!-- Mobile menu button -->
-                    <div @click="isOpen = !isOpen" class="flex md:hidden">
+                    {{-- <div @click="isOpen = !isOpen" class="flex md:hidden">
                         <button type="button" class="text-gray-200 hover:text-gray-400 focus:outline-none focus:text-gray-400"
                             aria-label="toggle menu">
                             <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
@@ -36,34 +38,34 @@
                                 </path>
                             </svg>
                         </button>
-                    </div>
+                    </div> --}}
                 </div>
         
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-                <div :class="isOpen ? 'flex' : 'hidden'"
-                    class="flex-col mt-2 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0">
-                    <a class="text-sm font-medium text-gray-200 transition-colors duration-300 transform hover:text-indigo-400"
-                        href="#">Home</a>
-                    <a class="text-sm font-medium text-gray-200 transition-colors duration-300 transform hover:text-indigo-400"
-                        href="#">Templates</a>
-                    <a class="text-sm font-medium text-gray-200 transition-colors duration-300 transform hover:text-indigo-400"
-                        href="#">Price</a>
-                    <a class="text-sm font-medium text-gray-200 transition-colors duration-300 transform hover:text-indigo-400"
-                        href="#">Help</a>
-                    <a class="px-4 py-1 text-sm font-medium text-center text-gray-200 transition-colors duration-300 transform border rounded hover:bg-indigo-400"
+                <div 
+                {{-- :class="isOpen ? 'flex' : 'hidden'" --}}
+                    class="links">
+                    <a class="font-medium text-black transition-colors duration-300 transform hover:text-white"
+                        href="{{ url('/')}}">Home</a>
+                    <a class="font-medium text-black transition-colors duration-300 transform hover:text-white"
+                        href="#">About Us</a>
+                    <a class="font-medium text-black transition-colors duration-300 transform hover:text-white"
+                        href="#">Traffic Highlights</a>
+                    <a class="font-medium text-black transition-colors duration-300 transform hover:text-white"
                         href="#">Get In Touch</a>
+                    <a class="px-5 py-3  text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
+                        href="#">Login</a>
                 </div>
             </nav>
         
             <section class="flex items-center justify-center" style="height: 500px;">
                 <div class="text-center">
-                    <p class="text-xl font-medium tracking-wider text-gray-300">Lorem ipsum dolor</p>
-                    <h2 class="mt-6 text-3xl font-bold text-white md:text-5xl">Lorem ipsum dolor sit amet, <br> consectetur
-                        adipiscing elit</h2>
+                    <h2 class="mt-6 mb-6 text-3xl font-bold text-white md:text-5xl kaushan-script-regular">TransitTrack</h2>
+                    <p class="text-3xl font-medium tracking-wider text-gray-300">Efficient and Convinient Public Transportation for Everyone</p>
         
                     <div class="flex justify-center mt-8">
-                        <a class="px-8 py-2 text-lg font-medium text-white transition-colors duration-300 transform bg-indigo-600 rounded hover:bg-indigo-500"
-                            href="#">Get In Touch</a>
+                        <a class="px-10 py-5 text-lg font-medium text-white transition-colors duration-300 transform bg-black rounded hover:bg-theme"
+                            href="#">Get Started</a>
                     </div>
                 </div>
             </section>
