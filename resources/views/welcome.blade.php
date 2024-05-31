@@ -138,7 +138,7 @@
             </div>
         </section>
         
-        <hr class="break">
+        <div class="break"></div>
 
         {{-- TESTIMONIALS SECTIONS --}}
         <section class="bg-white">
@@ -146,35 +146,37 @@
             <div class="title-text">
                 <p>Testimonials</p>
                 <hr>
+                <br>
+
             </div>
 
             <div class="max-w-5xl px-6 py-16 mx-auto">
                 <div class="md:flex md:justify-between">
-                    <h2 class="text-3xl font-semibold text-gray-800">Lorem ipsum dolor sit amet, consectetur <br> adipiscing
-                        elit, sed do eiusmod</h2>
-                    <a href="#" class="block mt-6 text-indigo-700 underline md:mt-0">Experienced team</a>
+                    <h2 class="text-3xl font-semibold text-gray-800">What do our users say about us?</h2>
                 </div>
         
                 <div class="grid gap-8 mt-10 md:grid-cols-2 lg:grid-cols-3">
                     <div class="px-6 py-8 overflow-hidden bg-white rounded-md shadow-md">
-                        <h2 class="text-xl font-medium text-gray-800">Audio</h2>
-                        <p class="max-w-md mt-4 text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing Ac aliquam ac
-                            volutpat, viverra magna risus aliquam massa.</p>
+                        <img class="profile-img" src="https://images.unsplash.com/photo-1582793770580-4cde3de01a62?q=80&w=1928&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="passenger profile image">
+                        <h2 class="text-xl font-medium text-gray-800">Anna</h2>
+                        Passenger
+                        <p class="text-xl max-w-md mt-4 text-gray-700">“It has made accessing matatus so convenient and sped up my day so much”</p>
+                    </div>
+
+                    <div class="px-6 py-8 overflow-hidden bg-white rounded-md shadow-md">
+                        <img class="profile-img" src="https://plus.unsplash.com/premium_photo-1682147745920-d2f4e30d9999?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="passenger profile image">
+                        <h2 class="text-xl font-medium text-gray-800">Chad</h2>
+                        Driver
+                        <p class="text-xl max-w-md mt-4 text-gray-700">“It is so much easier to find passengers when on-route with this”</p>
+                    </div>
+
+                    <div class="px-6 py-8 overflow-hidden bg-white rounded-md shadow-md">
+                        <img class="profile-img" src="https://pbs.twimg.com/media/Fv0xpdOWcAAxj_G?format=jpg&name=small" alt="passenger profile image">
+                        <h2 class="text-xl font-medium text-gray-800">Metro Trans</h2>
+                        Public Transport Cooperative
+                        <p class="text-xl max-w-md mt-4 text-gray-700">“Makes managing our drivers and vehicles easy and very efficient.”</p>
                     </div>
         
-                    <div class="px-6 py-8 overflow-hidden bg-white rounded-md shadow-md">
-                        <h2 class="text-xl font-medium text-gray-800">Audio</h2>
-                        <p class="max-w-md mt-4 text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing Ac aliquam ac
-                            volutpat,
-                            viverra magna risus aliquam massa.</p>
-                    </div>
-        
-                    <div class="px-6 py-8 overflow-hidden bg-white rounded-md shadow-md">
-                        <h2 class="text-xl font-medium text-gray-800">Audio</h2>
-                        <p class="max-w-md mt-4 text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing Ac aliquam ac
-                            volutpat,
-                            viverra magna risus aliquam massa.</p>
-                    </div>
                 </div>
             </div>
         </section>

@@ -88,8 +88,8 @@ nav{
 
 .break{
     background-color: #000;
-    height: 3px;
-    width: 100%;  
+    height: 2px;
+    width: 20%;  
 }
 
 .title-text > p{
@@ -120,4 +120,11 @@ nav{
 .about-us{
     font-size: 1.5em;
     color: #000;
+}
+
+.profile-img {
+    border-radius: 20px;
+    image-orientation: flip;
+    height: 120px;
+    margin-bottom: 20px;
 }
