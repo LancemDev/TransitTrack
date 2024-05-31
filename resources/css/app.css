@@ -7,7 +7,7 @@
 }
 
 .bg-img{
-    background: url("https://images.unsplash.com/photo-1644410578664-27713c1a227f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") ;
+    background: url("https://images.unsplash.com/photo-1644410579277-c145a7dfb1eb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") ;
     background-size: cover;
 }
 
@@ -71,7 +71,7 @@ nav{
     text-align: center;
     padding-top: 0px;
     z-index: 1;
-    padding-top: 50px;
+    padding-top: 100px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -83,8 +83,13 @@ nav{
 .title-text > hr{
     background-color: #000;
     height: 5px;
-    width: 10%;
-    
+    width: 10%;    
+}
+
+.break{
+    background-color: #000;
+    height: 3px;
+    width: 100%;  
 }
 
 .title-text > p{
