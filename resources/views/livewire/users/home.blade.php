@@ -1,65 +1,17 @@
 <div>
-    {{-- Welcome Modal --}}
-    {{-- <x-modal wire:model="welcomeModal" title="Welcome to the User Dashboard">
-        <p>
-            Welcome to the user dashboard. This is the default homepage for passengers. You can navigate to other pages using the sidebar.
-            <div class="text-sm text-gray-500 mt-2">
-                Note that we are going to be using your location to provide you with the best services.
-            </div>
-        </p>
-
-        <x-slot:actions>
-            <x-button wire:click="closeModal" class="btn-primary">Got it!</x-button>
-        </x-slot:actions>
-    </x-modal> --}}
-
-    {{-- A dashboard that can be minized and should be minimized by default --}}
-
     <x-main full-width>
-        {{-- SIDEBAR --}}
-        <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
- 
-            {{-- BRAND --}}
-            <div class="ml-5 pt-5">App</div>
- 
-            {{-- MENU --}}
-            <x-menu activate-by-route>
- 
-                {{-- User --}}
-                @if($user = auth()->user())
-                    <x-menu-separator />
- 
-                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
-                        <x-slot:actions>
-                            <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
-                        </x-slot:actions>
-                    </x-list-item>
- 
-                    <x-menu-separator />
-                @endif
- 
-                <x-button @click="$wire.searchModal = true" icon="o-sparkles" class="btn-circle btn-ghost btn-xs" tooltip-left="search" />
-                <x-menu-item title="Hello" icon="o-sparkles" link="/" />
-                <x-menu-sub title="Settings" icon="o-cog-6-tooth">
-                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />
-                    <x-menu-item title="Archives" icon="o-archive-box" link="####" />
-                </x-menu-sub>
-            </x-menu>
-        </x-slot:sidebar>
- 
-        {{-- The `$slot` goes here --}}
         <x-slot:content>
-            {{-- Search Modal --}}
-            <x-modal wire:model="searchModal" title="Search" persistent backdrop-blur>
-                <x-form wire:submit.live="search">
-                    <x-input wire:model.live.debounce="searchQuery" clearable icon="o-magnifying-glass" />
-                    <div wire:model=result></div>
-                    <x-slot:actions>
-                        <x-button class="btn-primary" type="submit" label="Search" />
-                    </x-slot:actions>
-                </x-form>
-            </x-modal>
-
+            
+            <x-header title="Navigate" subtitle="Efficient and Convenient Public Transportation for Everyone" separator with-anchor>
+                <x-slot:middle class="!justify-end">
+                    <x-input icon="o-magnifying-glass" placeholder="Search..." />
+                </x-slot:middle>
+                <x-slot:actions>
+                    <x-button icon="o-funnel" />
+                    <x-button icon="o-plus" class="btn-primary" />
+                </x-slot:actions>
+            </x-header>
+            <button onclick="searchLocation()">Search Location</button>
             <div id="loading" class="spinner"></div>
             <div id="map" style="height: 1000px;"></div>
             
@@ -114,11 +66,42 @@
 
                 // Then call getLocation every 5 seconds
                 setInterval(getLocation, 5000);
+
+                // Search functionality
+                function searchLocation() {
+                    var searchQuery = prompt("Enter location to search:");
+
+                    // Perform the search using the searchQuery
+                    // You can use a geocoding service like Nominatim to convert the searchQuery to coordinates
+                    // Once you have the coordinates, you can update the map and marker accordingly
+                    // Here's an example using the Nominatim API:
+                    fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + searchQuery)
+                        .then(function(response) {
+                            return response.json();
+                        })
+                        .then(function(data) {
+                            if (data.length > 0) {
+                                var result = data[0];
+                                var lat = result.lat;
+                                var lon = result.lon;
+
+                                // Update the map center without changing the zoom level
+                                map.panTo([lat, lon]);
+
+                                // Remove the old marker if it exists
+                                if (marker) {
+                                    map.removeLayer(marker);
+                                }
+
+                                // Add a new marker at the search result location
+                                marker = L.marker([lat, lon]).addTo(map);
+                            }
+                        })
+                        .catch(function(error) {
+                            console.error('Error:', error);
+                        });
+                }
             </script>
         </x-slot:content>
     </x-main>
-
-    <x-spotlight />
-
-    
 </div>
