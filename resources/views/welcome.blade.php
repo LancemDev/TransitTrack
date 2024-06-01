@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -26,7 +27,7 @@
             <nav class="">
                 <div class="flex items-center justify-between">
                     <a class="logo-font font-bold text-black transition-colors duration-300 transform md:text-2xl hover:text-white"
-                    href="{{ url('/')}}">TransitTrack</a>
+                    href="{{ url('/')}}"><i class="uil uil-bus-alt"></i>TransitTrack<i class="uil uil-mobile-android"></i></a>
         
                     <!-- Mobile menu button -->
                     {{-- <div @click="isOpen = !isOpen" class="flex md:hidden">
@@ -184,15 +185,14 @@
         {{-- REPEATING CALL TO ACTION --}}
         <section class="bg-white">
             <div class="max-w-5xl px-6 py-16 mx-auto">
-                <div class="px-8 py-12 bg-gray-800 rounded-md md:px-20 md:flex md:items-center md:justify-between">
+                <div class="px-10 py-20 bg-gray-800 flex-col justify-center rounded-md md:px-20 md:flex md:items-center md:justify-between">
                     <div>
-                        <h3 class="text-2xl font-semibold text-white">Lorem ipsum dolor sit amet</h3>
-                        <p class="max-w-md mt-4 text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing Ac aliquam ac
-                            volutpat, viverra magna risus aliquam massa.</p>
+                        <h3 class="text-2xl font-semibold text-white">Your personal public transport partner</h3>
+                        <p class="max-w-md mt-4 ml-28 text-gray-400">Ready to work with us?</p>
                     </div>
         
-                    <a class="block px-8 py-2 mt-6 text-lg font-medium text-center text-white transition-colors duration-300 transform bg-indigo-600 rounded md:mt-0 hover:bg-indigo-500"
-                        href="#">Get In Touch</a>
+                    <a class="block px-8 py-2 mt-6 mr-8 text-lg font-medium text-center text-white transition-colors duration-300 transform bg-gray-400 rounded md:mt-0 hover:bg-black"
+                        href="#">Get Started</a>
                 </div>
             </div>
         </section>

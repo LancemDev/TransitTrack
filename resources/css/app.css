@@ -28,11 +28,15 @@
 
 nav{
     margin: 0px;
-    padding: 50px;
+    padding: 30px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     background-color: #E4DA80;
+    
     font-family: 'Aclonica', sans-serif;
+    position: fixed;
+    z-index: 3;
 }
 
 .logo-font{
