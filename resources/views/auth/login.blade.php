@@ -87,6 +87,12 @@
         <div class="w-full bg-gray-100 lg:w-1/2 flex items-center justify-center">
           <div class="max-w-md w-full p-6">
             <h1 class="text-3xl font-semibold mb-6 text-black text-center">Log In</h1>
+
+            <div class="mb-4 text-sm text-gray-600 text-center">
+              <p>Don't have an account? <a href="/register" class="text-black hover:underline">Register here</a>
+              </p>
+            </div>
+
             <h1 class="text-sm font-semibold mb-6 text-gray-500 text-center">Welcome back... Use your credentials</h1>
             <div class="mt-4 flex flex-col lg:flex-row items-center justify-between">
               <div class="w-full lg:w-1/2 mb-2 lg:mb-0">
