@@ -14,7 +14,7 @@
 </head>
 <body class="font-sans antialiased">
  
- 
+    @include('components.layouts.navigation')
     {{-- The main content with `full-width` --}}
     <x-main with-nav full-width>
  
