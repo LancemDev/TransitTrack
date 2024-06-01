@@ -6,6 +6,17 @@
     background-color: #E4DA80; 
 }
 
+.action-call{
+    background-color: #E4DA80; 
+    color: #000;
+}
+
+.hover\:action-call:hover{
+    background-color: #E4DA80; 
+    color: #000;
+    font-weight: 700;
+}
+
 .bg-img{
     background: url("https://images.unsplash.com/photo-1644410579277-c145a7dfb1eb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") ;
     background-size: cover;
@@ -66,6 +77,7 @@ nav{
 .hover\:bg-theme:hover{
     background-color: #E4DA80;
 }
+
 
 .title-text{
     text-align: center;

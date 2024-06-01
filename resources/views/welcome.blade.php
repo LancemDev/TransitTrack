@@ -61,10 +61,10 @@
             <section class="flex items-center justify-center" style="height: 600px;">
                 <div class="text-center">
                     <h2 class="mt-6 mb-6 text-3xl font-bold text-white md:text-5xl kaushan-script-regular">TransitTrack</h2>
-                    <p class="ml-10 text-3xl font-bold tracking-wider text-white"> Efficient and Convinient Public Transportation for Everyone</p>
+                    <p class="ml-10 text-3xl font-bold tracking-wider text-white"> Efficient and Convenient Public Transportation for Everyone</p>
         
                     <div class="flex justify-center mt-8">
-                        <a class="px-10 py-5 text-lg font-medium text-white transition-colors duration-300 transform bg-black rounded hover:bg-theme"
+                        <a class="px-10 py-5 text-lg font-medium text-white transition-colors duration-300 transform bg-black rounded hover:action-call"
                             href="{{ url('/register') }}">Get Started</a>
                     </div>
                 </div>
