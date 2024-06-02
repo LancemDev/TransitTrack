@@ -33,6 +33,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('welcomeTest');
+});
+
 Route::get('/home', HomePage::class);
 
 /* Authentication routes */
