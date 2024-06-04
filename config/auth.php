@@ -88,15 +88,15 @@ return [
         //     'model' => App\Models\SaccoAdmin::class,
         // ],
     
-        // 'drivers' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Driver::class,
-        // ],
+        'drivers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Driver::class,
+        ],
     
-        // 'admins' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Admin::class,
-        // ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
     ],
 
     /*

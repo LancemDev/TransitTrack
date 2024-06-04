@@ -10,6 +10,7 @@ use App\Models\SaccoAdmin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -35,28 +36,28 @@ class AuthController extends Controller
         return redirect()->route('user.home')->with('success', 'Account created successfully');
     }
 
-    public function login()
+    public function login(Request $request)
     {
         $fields = request()->validate([
-            'email' => 'required|string',
-            'password' => 'required|string'
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
         // Define the models to check
         $models = [
-            'users' => User::class, 
-            'sacco' => SaccoAdmin::class, 
-            'admin' => Admin::class, 
-            'driver' => Driver::class
+            'admin' => Admin::class,
+            'users' => User::class,
+            'driver' => Driver::class,
+            'sacco' => SaccoAdmin::class,
         ];
 
         foreach ($models as $type => $model) {
-            if ($model::where('email', $fields['email'])->exists()) {
-                if (Auth::attempt($fields)) {
-                    // Authentication passed
-                    dd($models);
-                    return redirect()->route($type . '.home')->with('success', 'Login successful');
-                }
+            $user = $model::where('email', $fields['email'])->first(); // Fetch the user if exists
+
+            if ($user && Auth::attempt(['email' => $fields['email'], 'password' => $fields['password']])) {
+                // Authentication passed for a specific user type
+                dd('Login successful for ' . $type);
+                // return redirect()->route($type . '.home')->with('success', 'Login successful');
             }
         }
 
@@ -64,5 +65,5 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
-    }
+    } 
 }

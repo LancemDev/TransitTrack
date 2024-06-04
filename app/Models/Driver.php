@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Driver extends Model
+class Driver extends Authenticatable
 {
     use HasFactory, Notifiable;
 
