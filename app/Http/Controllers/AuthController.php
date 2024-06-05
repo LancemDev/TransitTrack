@@ -35,35 +35,4 @@ class AuthController extends Controller
 
         return redirect()->route('user.home')->with('success', 'Account created successfully');
     }
-
-    public function login(Request $request)
-    {
-        $fields = request()->validate([
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-
-        // Define the models to check
-        $models = [
-            'admin' => Admin::class,
-            'users' => User::class,
-            'driver' => Driver::class,
-            'sacco' => SaccoAdmin::class,
-        ];
-
-        foreach ($models as $type => $model) {
-            $user = $model::where('email', $fields['email'])->first(); // Fetch the user if exists
-
-            if ($user && Auth::attempt(['email' => $fields['email'], 'password' => $fields['password']])) {
-                // Authentication passed for a specific user type
-                dd('Login successful for ' . $type);
-                // return redirect()->route($type . '.home')->with('success', 'Login successful');
-            }
-        }
-
-        // Authentication failed
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
-    } 
 }

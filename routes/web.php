@@ -13,12 +13,15 @@ use App\Http\Middleware\DriverMiddleware as drivermid;
 use Livewire\Volt\Volt;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 use App\Livewire\HomePage;
 use App\Livewire\Users\Home as UsersHome;
 use App\Livewire\Admin\Home as AdminHome;
 use App\Livewire\Sacco\Home as SaccoHome;
 use App\Livewire\Driver\Home as DriverHome;
+
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthLoginController;
 
 use App\Livewire\Admin\ViewUsers;
 use App\Livewire\Admin\ViewSaccos;
@@ -39,7 +42,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/new/login', [AuthLoginController::class, 'login'])->name('new.auth.login');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
 /*

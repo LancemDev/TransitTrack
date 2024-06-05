@@ -40,24 +40,24 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        // 'web' => [
-        //     'driver' => 'session',
-        //     'provider' => 'users',
-        // ],
-        // 'sacco_admin' => [
-        //     'driver' => 'session',
-        //     'provider' => 'sacco_admins',
-        // ],
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'sacco_admin' => [
+            'driver' => 'session',
+            'provider' => 'sacco_admins',
+        ],
     
-        // 'driver' => [
-        //     'driver' => 'session',
-        //     'provider' => 'drivers',
-        // ],
+        'driver' => [
+            'driver' => 'session',
+            'provider' => 'drivers',
+        ],
     
-        // 'admin' => [
-        //     'driver' => 'session',
-        //     'provider' => 'admins',
-        // ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -83,10 +83,10 @@ return [
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
 
-        // 'sacco_admins' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\SaccoAdmin::class,
-        // ],
+        'sacco_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SaccoAdmin::class,
+        ],
     
         'drivers' => [
             'driver' => 'eloquent',
