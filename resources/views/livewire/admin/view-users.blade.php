@@ -54,8 +54,10 @@
         <x-table :headers="$headers" :rows="$users" striped @row-click="alert($event.detail.name)">
             @foreach($users as $user)
                 @scope('actions', $user)
+                <div class="flex">
                     <x-button icon="o-trash" wire:click="delete({{ $user->id }})" spinner class="btn-sm" />
                     <x-button icon="o-pencil" wire:click="edit({{ $user->id }})" spinner class="btn-sm" />
+                </div>
                 @endscope
             @endforeach
         </x-table>
