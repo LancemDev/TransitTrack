@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+
 // Middlewares
 use App\Http\Middleware\UserMiddleware as usermid;
 use App\Http\Middleware\AdminMiddleware as  adminmid;
@@ -29,12 +33,63 @@ use App\Livewire\Admin\AddUser;
 use App\Livewire\Sacco\ManageDrivers;
 use App\Livewire\Sacco\ManageVehicles;
 
+use Laravel\Socialite\Facades\Socialite;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
+
+/*
+ * -------------------------
+ * Socialite Oauth2 routes
+ * -------------------------
+ */
+Route::get('/github/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+ 
+
+Route::get('/github/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+
+    $newUser = \App\Models\User::firstOrCreate(
+        ['email' => $user->email],
+        [
+            'name' => $user->name,
+            'password' => Hash::make(Str::random(24)), 
+        ]
+    );
+
+    // Log the user in
+    Auth::login($newUser, true);
+
+    return redirect('/home');
+});
+
+
+Route::get('/google/auth/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/login/google/callback', function () {
+    $user = Socialite::driver('google')->user();
+
+    $newUser = \App\Models\User::firstOrCreate(
+        ['email' => $user->email],
+        [
+            'name' => $user->name,
+            'password' => Hash::make(Str::random(24)), 
+        ]
+    );
+
+    // Log the user in
+    Auth::login($newUser, true);
+
+    return redirect('/users/home');
+});
 
 Route::get('/test', function () {
     return view('welcomeTest');
