@@ -1,17 +1,40 @@
 <div>
+    {{-- <x-modal wire:model="welcomeModal">
+        <x-slot:title>Welcome</x-slot>
+        
+        <p>Welcome to the Navigate app, {{ auth()->user()->name }}! This app helps you find the best public transportation routes in your area. To get started, click the "Find Routes" button below.</p>
+        
+        <x-slot:actions>
+            <x-button wire:click="closeModal" class="btn-primary">Find Routes</x-button>
+        </x-slot:actions>
+    </x-modal> --}}
     <x-main full-width>
         <x-slot:content>
-            
             <x-header title="Navigate" subtitle="Efficient and Convenient Public Transportation for Everyone" separator with-anchor>
                 <x-slot:middle class="!justify-end">
-                    <x-input icon="o-magnifying-glass" placeholder="Search..." />
+                    <x-form wire:submit.prevent="searchLocation">
+                        <x-input wire:model="search" icon="o-magnifying-glass" placeholder="Search..." />
+                    </x-form>
                 </x-slot:middle>
                 <x-slot:actions>
                     <x-button icon="o-funnel" />
                     <x-button icon="o-plus" class="btn-primary" />
                 </x-slot:actions>
+
+                <x-menu>
+                    @if($user = auth()->user())
+                        <x-menu-separator />
+    
+                        <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
+                            <x-slot:actions>
+                                <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
+                            </x-slot:actions>
+                        </x-list-item>
+    
+                        <x-menu-separator />
+                    @endif
+                </x-menu>
             </x-header>
-            <button onclick="searchLocation()">Search Location</button>
             <div id="loading" class="spinner"></div>
             <div id="map" style="height: 1000px;"></div>
             
@@ -67,40 +90,27 @@
                 // Then call getLocation every 5 seconds
                 setInterval(getLocation, 5000);
 
-                // Search functionality
-                function searchLocation() {
-                    var searchQuery = prompt("Enter location to search:");
+                // Listen for the searchResults event from Livewire
+                document.addEventListener('livewire:load', function () {
+                    window.livewire.on('searchResults', function (results) {
+                        // Clear the map
+                        if (marker) {
+                            map.removeLayer(marker);
+                        }
 
-                    // Perform the search using the searchQuery
-                    // You can use a geocoding service like Nominatim to convert the searchQuery to coordinates
-                    // Once you have the coordinates, you can update the map and marker accordingly
-                    // Here's an example using the Nominatim API:
-                    fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + searchQuery)
-                        .then(function(response) {
-                            return response.json();
-                        })
-                        .then(function(data) {
-                            if (data.length > 0) {
-                                var result = data[0];
-                                var lat = result.lat;
-                                var lon = result.lon;
+                        // Add a marker for each result
+                        results.forEach(function (result) {
+                            var lat = result.lat; // Replace with the actual latitude property
+                            var lon = result.lon; // Replace with the actual longitude property
 
-                                // Update the map center without changing the zoom level
-                                map.panTo([lat, lon]);
+                            // Update the map center without changing the zoom level
+                            map.panTo([lat, lon]);
 
-                                // Remove the old marker if it exists
-                                if (marker) {
-                                    map.removeLayer(marker);
-                                }
-
-                                // Add a new marker at the search result location
-                                marker = L.marker([lat, lon]).addTo(map);
-                            }
-                        })
-                        .catch(function(error) {
-                            console.error('Error:', error);
+                            // Add a new marker at the search result location
+                            marker = L.marker([lat, lon]).addTo(map);
                         });
-                }
+                    });
+                });
             </script>
         </x-slot:content>
     </x-main>

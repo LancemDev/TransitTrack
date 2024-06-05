@@ -77,6 +77,7 @@ Route::get('/google/auth/redirect', function () {
     return Socialite::driver('google')->redirect();
 });
 
+
 Route::get('/login/google/callback', function () {
     $user = Socialite::driver('google')->user();
 
@@ -88,8 +89,8 @@ Route::get('/login/google/callback', function () {
         ]
     );
 
-    // Log the user in
-    Auth::login($newUser, true);
+    // Log the user in using a custom guard
+    Auth::guard('users')->login($newUser);
 
     return redirect('/users/home');
 });
@@ -129,48 +130,50 @@ Route::get('/auth-check', function(){
 });
 
 
-Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
-
-
 /*
  * -------------------------
  * Sacco Admin routes
  * -------------------------
  */
-Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home');
-Route::get('sacco/manage-drivers', ManageDrivers::class)->name('sacco.manage-drivers');
-Route::get('sacco/manage-vehicles', ManageVehicles::class)->name('sacco.manage-vehicles');
-// Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home')->middleware('auth:sacco_admin')->middleware(saccomid::class);
+Route::middleware('auth:sacco_admin')->group(function () {
+    Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home');
+    Route::get('sacco/manage-drivers', ManageDrivers::class)->name('sacco.manage-drivers');
+    Route::get('sacco/manage-vehicles', ManageVehicles::class)->name('sacco.manage-vehicles');
+});
 
 /*
  * -------------------------
  * Admin routes
  * -------------------------
  */
-Route::get('admin/home', AdminHome::class)->name('admin.home');
-// Route::get('admin/home', AdminHome::class)->name('admin.home')->middleware('auth:admin')->middleware(adminmid::class);
-Route::get('admin/view-users', ViewUsers::class)->name('admin.view-users');
-// Route::get('admin/view-users', ViewUsers::class)->name('admin.view-users')->middleware('auth:admin')->middleware(adminmid::class);
-// Route::get('admin/add-user', AddUser::class)->name('admin.add-user')->middleware('auth:admin')->middleware(adminmid::class);
-Route::get('admin/view-saccos', ViewSaccos::class)->name('admin.view-saccos');
-// Route::get('admin/add-sacco', AddSacco::class)->name('admin.add-sacco')->middleware('auth:admin')->middleware(adminmid::class);
-Route::get('admin/view-drivers', ViewDrivers::class)->name('admin.view-drivers');
-Route::get('admin/view-vehicles', ViewVehicles::class)->name('admin.view-vehicles');
-Route::get('admin/add-user', AddUser::class)->name('admin.add-user');
-Route::get('admin/add-sacco', AddSacco::class)->name('admin.add-sacco');
-Route::get('admin/add-vehicle', AddVehicle::class)->name('admin.add-vehicle');
-Route::get('admin/add-driver', AddDriver::class)->name('admin.add-driver');
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('admin/home', AdminHome::class)->name('admin.home');
+    Route::get('admin/view-users', ViewUsers::class)->name('admin.view-users');
+    Route::get('admin/view-saccos', ViewSaccos::class)->name('admin.view-saccos');
+    Route::get('admin/view-drivers', ViewDrivers::class)->name('admin.view-drivers');
+    Route::get('admin/view-vehicles', ViewVehicles::class)->name('admin.view-vehicles');
+    Route::get('admin/add-user', AddUser::class)->name('admin.add-user');
+    Route::get('admin/add-sacco', AddSacco::class)->name('admin.add-sacco');
+    Route::get('admin/add-vehicle', AddVehicle::class)->name('admin.add-vehicle');
+    Route::get('admin/add-driver', AddDriver::class)->name('admin.add-driver');
+});
+
 
 /*
  * -------------------------
  * User routes
  * -------------------------
  */
-Route::get('users/home', UsersHome::class)->name('user.home');
-// Route::get('users/home', UsersHome::class)->name('user.home')->middleware('auth:users')->middleware(usermid::class);
+Route::middleware('auth:users')->group(function () {
+    Route::get('users/home', UsersHome::class)->name('user.home');
+});
 
-// Driver routes
-Route::get('driver/home', DriverHome::class)->name('driver.home');
-// Route::get('driver/home', DriverHome::class)->name('driver.home')->middleware('auth:driver')->middleware(drivermid::class);
-
+/*
+ * -------------------------
+ * Driver routes
+ * -------------------------
+ */
+Route::middleware('auth:driver')->group(function () {
+    Route::get('driver/home', DriverHome::class)->name('driver.home');
+});

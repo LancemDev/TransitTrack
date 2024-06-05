@@ -46,9 +46,37 @@ class Home extends Component
         }
     }
 
+    public function searchLocation()
+    {
+        // Check if the search query is not empty
+        if (!empty($this->search)) {
+            // Perform the search using the Nominatim API
+            $response = Http::get('https://nominatim.openstreetmap.org/search', [
+                'q' => $this->search,
+                'format' => 'json',
+            ]);
+
+            // Check if the request was successful
+            if ($response->successful()) {
+                // Get the data from the response
+                $data = $response->json();
+
+                // Check if any data was returned
+                if (!empty($data)) {
+                    // Get the first result
+                    $location = $data[0];
+
+                    // Emit an event with the location data
+                    $this->emit('searchResults', [$location]);
+                }
+            }
+        }
+    }
+
     public function closeModal()
     {
         $this->welcomeModal = false;
+        return redirect()->route('users.home');
     }
     public function render()
     {

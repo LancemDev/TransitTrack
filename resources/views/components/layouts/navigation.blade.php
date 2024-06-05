@@ -54,7 +54,12 @@
                         href="#">Traffic Highlights</a>
                     <a class="font-medium text-black transition-colors duration-300 transform hover:text-white"
                         href="#">Get In Touch</a>
-                    <a class="px-5 py-3  text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
-                        href="{{ url('/login')}}">Login</a>
+                    @if(auth()->check())
+                        <a class="px-5 py-3 text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
+                           href="{{ url('/logout')}}">Logout</a>
+                    @else
+                        <a class="px-5 py-3 text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
+                           href="{{ url('/login')}}">Login</a>
+                    @endif
                 </div>
             </nav>

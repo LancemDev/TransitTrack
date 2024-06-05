@@ -54,8 +54,24 @@
                         href="#">Traffic Highlights</a>
                     <a class="font-medium text-black transition-colors duration-300 transform hover:text-white"
                         href="#">Get In Touch</a>
-                    <a class="px-5 py-3  text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
-                        href="{{ url('/login')}}">Login</a>
+                    @if(auth()->check())
+                        @if(auth()->guard('admin')->check())
+                            <a class="px-5 py-3 text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
+                               href="{{ route('admin.home') }}">Dashboard</a>
+                        @elseif(auth()->guard('web')->check())
+                            <a class="px-5 py-3 text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
+                               href="{{ route('user.home') }}">Dashboard</a>
+                        @elseif(auth()->guard('driver')->check())
+                            <a class="px-5 py-3 text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
+                               href="{{ route('driver.home') }}">Dashboard</a>
+                        @elseif(auth()->guard('sacco_admin')->check())
+                            <a class="px-5 py-3 text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
+                               href="{{ route('sacco.home') }}">Dashboard</a>
+                        @endif
+                    @else
+                        <a class="px-5 py-3 text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
+                           href="{{ url('/login')}}">Login</a>
+                    @endif
                 </div>
             </nav>
         
