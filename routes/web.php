@@ -50,12 +50,12 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
  * Socialite Oauth2 routes
  * -------------------------
  */
-Route::get('/github/auth/redirect', function () {
+Route::get('/auth/redirect', function () {
     return Socialite::driver('github')->redirect();
 });
  
 
-Route::get('/github/auth/callback', function () {
+Route::get('/auth/callback', function () {
     $user = Socialite::driver('github')->user();
 
     $newUser = \App\Models\User::firstOrCreate(
