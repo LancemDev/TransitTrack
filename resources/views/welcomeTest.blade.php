@@ -146,3 +146,51 @@
         </section>
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+<nav class="">
+    <div class="flex items-center justify-between">
+        <a class="logo-font font-bold text-black transition-colors duration-300 transform md:text-2xl hover:text-white"
+        href="{{ url('/')}}"><i class="uil uil-bus-alt"></i>TransitTrack<i class="uil uil-mobile-android"></i></a>
+
+        <!-- Mobile menu button -->
+        {{-- <div @click="isOpen = !isOpen" class="flex md:hidden">
+            <button type="button" class="text-gray-200 hover:text-gray-400 focus:outline-none focus:text-gray-400"
+                aria-label="toggle menu">
+                <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+                    <path fill-rule="evenodd"
+                        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z">
+                    </path>
+                </svg>
+            </button>
+        </div> --}}
+    </div>
+
+    <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+    <div 
+    {{-- :class="isOpen ? 'flex' : 'hidden'" --}}
+        class="links">
+        <a class="font-medium text-black transition-colors duration-300 transform hover:text-white"
+            href="{{ url('/')}}">Home</a>
+        <a class="font-medium text-black transition-colors duration-300 transform hover:text-white"
+            href="#about-us">About Us</a>
+        <a class="font-medium text-black transition-colors duration-300 transform hover:text-white"
+            href="#">Traffic Highlights</a>
+        <a class="font-medium text-black transition-colors duration-300 transform hover:text-white"
+            href="#">Get In Touch</a>
+        @if(auth()->check())
+            <a class="px-5 py-3 text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
+               href="{{ url('/logout')}}">Logout</a>
+        @else
+            <a class="px-5 py-3 text-center text-black transition-colors duration-300 transform border rounded hover:bg-white"
+               href="{{ url('/login')}}">Login</a>
+        @endif
+    </div>
+</nav>

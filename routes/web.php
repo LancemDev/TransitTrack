@@ -55,8 +55,12 @@ Route::get('/auth/redirect', function () {
 });
  
 
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
+Route::get('/auth/github', function () {
+    try {
+        $user = Socialite::driver('github')->user();
+    } catch (\Laravel\Socialite\Two\InvalidStateException $e) {
+        return redirect('/auth/github'); // Redirect back to the OAuth route.
+    }
 
     $newUser = \App\Models\User::firstOrCreate(
         ['email' => $user->email],
@@ -71,6 +75,7 @@ Route::get('/auth/callback', function () {
 
     return redirect('/home');
 });
+
 
 
 Route::get('/google/auth/redirect', function () {
