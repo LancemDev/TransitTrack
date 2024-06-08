@@ -12,17 +12,15 @@
                     <x-menu-separator />
  
                     <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
-                        <x-slot:actions>
-                            <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
-                        </x-slot:actions>
+                        
                     </x-list-item>
  
                     <x-menu-separator />
                 @endif
  
-                <x-menu-item title="Dashboard" icon="o-sparkles" link="/sacco/home" />
-                <x-menu-item title="Manage Vehicles" icon="o-sparkles" link="/sacco/manage-vehicles" />
-                <x-menu-item title="Manage Drivers" icon="o-sparkles" link="/sacco/manage-drivers" />
+                <x-menu-item title="Dashboard" icon="o-home" link="/sacco/home" />
+                <x-menu-item title="Manage Vehicles" icon="o-truck" link="/sacco/manage-vehicles" />
+                <x-menu-item title="Manage Drivers" icon="o-user" link="/sacco/manage-drivers" />
                 <x-menu-sub title="Settings" icon="o-cog-6-tooth">
                     <x-menu-item title="Log out" icon="o-power" link="/logout" />
                 </x-menu-sub>

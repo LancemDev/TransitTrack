@@ -31,7 +31,7 @@ class AuthLoginController extends Controller
 
         if(Auth::guard('sacco_admin')->attempt(['email' => $fields['email'], 'password' => $fields['password']])) 
         {
-            return redirect()->route('sacco.home')->with('success', 'Login successful');
+            return redirect()->route('sacco_admin.home')->with('success', 'Login successful');
         }
 
         // Authentication failed
