@@ -17,6 +17,7 @@ class SaccoAdmin extends Authenticatable
         'email',
         'role',
         'phone',
+        'sacco_id',
         'password',
         'last_login',
         'last_logout'

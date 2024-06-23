@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
+            $table->foreign('sacco_id')->references('id')->on('saccos')->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->time('last_login')->nullable();
             $table->time('last_logout')->nullable();

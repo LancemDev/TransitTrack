@@ -38,6 +38,7 @@ class UserSeeder extends Seeder
             'name' => 'Jane Doe',
             'email' => 'sacco@example.com',
             'phone' => '0714345678',
+            'id' => 3,
             'password' => bcrypt('password'),
             'created_at' => now(),
             'updated_at' => now()

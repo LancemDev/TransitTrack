@@ -20,6 +20,15 @@ class ManageDrivers extends Component
     public bool $showAddDriverModal = false;
     public bool $editDriverModal = false;
 
+    public function addDriverModal()
+    {
+        $this->name='';
+        $this->email='';
+        $this->phone='';
+        $this->password='';
+        $this->showAddDriverModal = true;
+    }
+
     public function addDriver()
     {
         $this->validate([

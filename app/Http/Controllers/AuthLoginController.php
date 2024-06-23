@@ -31,6 +31,7 @@ class AuthLoginController extends Controller
 
         if(Auth::guard('sacco_admin')->attempt(['email' => $fields['email'], 'password' => $fields['password']])) 
         {
+            session(['show_welcome_modal' => true]);
             return redirect()->route('sacco_admin.home')->with('success', 'Login successful');
         }
 

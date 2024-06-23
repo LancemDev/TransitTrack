@@ -42,8 +42,8 @@
             @endphp
 
             <x-header title="Vehicles" with-anchor separator />
-            <x-button label="Add Vehicle" @click="$wire.showAddVehicleModal = true" class="btn btn-primary" />
-            <x-table :headers="$headers" :rows="$users" striped @row-click="alert($event.detail.name)">
+            <x-button label="Add Vehicle" wire:click="addVehicleModal" class="btn btn-primary" />
+            <x-table :headers="$headers" :rows="$users" striped >
                 @foreach($users as $user)
                     @scope('actions', $user)
                         <div class="flex">

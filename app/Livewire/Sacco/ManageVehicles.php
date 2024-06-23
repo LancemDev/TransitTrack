@@ -18,6 +18,14 @@ class ManageVehicles extends Component
     public bool $showAddVehicleModal = false;
     public bool $editVehicleModal = false;
 
+    public function addVehicleModal()
+    {
+        $this->number_plate = '';
+        $this->type = '';
+        $this->color = '';
+        $this->showAddVehicleModal = true;
+    }
+
     public function addVehicle()
     {
         $this->validate([

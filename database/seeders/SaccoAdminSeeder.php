@@ -17,6 +17,7 @@ class SaccoAdminSeeder extends Seeder
         $saccoAdmin->name = 'Sacco Admin';
         $saccoAdmin->email = 'sacco-admin@example.com';
         $saccoAdmin->phone = '0712345678';
+        $saccoAdmin->sacco_id = 1;
         $saccoAdmin->password = bcrypt('password');
         $saccoAdmin->save();
     }
