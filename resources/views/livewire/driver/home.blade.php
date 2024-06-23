@@ -22,7 +22,6 @@
                 </x-file>
                 @if($user = auth()->user())
                         <x-menu-separator />
-     ss
                         <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
                             
                         </x-list-item>
