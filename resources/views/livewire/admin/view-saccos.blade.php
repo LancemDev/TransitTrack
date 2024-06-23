@@ -18,7 +18,7 @@
                         <x-menu-separator />
                     @endif
      
-                    <x-menu-item title="View Users" icon="o-eye" link="/admin/view-users" />
+                    <x-menu-item title="View Passengers" icon="o-eye" link="/admin/view-users" />
                     <x-menu-item title="Add User" icon="o-user-plus" link="/admin/add-user" />
                     <x-menu-item title="View Saccos" icon="o-user-group" link="/admin/view-saccos" />
                     <x-menu-item title="Add Sacco" icon="o-plus" link="/admin/add-sacco" />
@@ -51,7 +51,7 @@
             @endphp
     
             <x-header title="Saccos" with-anchor separator />
-            <x-table :headers="$headers" :rows="$saccos" striped @row-click="alert($event.detail.name)">
+            <x-table :headers="$headers" :rows="$saccos" striped >
                 @foreach($saccos as $sacco)
                     @scope('actions', $sacco)
                     <div class="flex">

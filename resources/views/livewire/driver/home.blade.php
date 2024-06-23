@@ -13,6 +13,25 @@
             </x-slot:actions>
         </x-form>
     </x-modal>
+
+    <x-header with-anchor separator>
+        <div>
+            <x-slot:actions class="!justify-end">
+                <x-file wire:model="photo2" accept="image/png" crop-after-change>
+                    <img src="{{ $user->avatar ?? '/empty_user.jpeg' }}" class="h-40 rounded-lg" />
+                </x-file>
+                @if($user = auth()->user())
+                        <x-menu-separator />
+     ss
+                        <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
+                            
+                        </x-list-item>
+     
+                        <x-menu-separator />
+                    @endif
+            </x-slot:actions>
+        </div>
+    </x-header>
      
     <div class="flex">
         <x-stat title="Total Drivers" value="22" icon="o-users" tooltip-bottom="Total registered drivers" />

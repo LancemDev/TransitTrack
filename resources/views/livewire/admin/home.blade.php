@@ -20,7 +20,7 @@
                     <x-menu-separator />
                 @endif
  
-                <x-menu-item title="View Users" icon="o-eye" link="/admin/view-users" />
+                <x-menu-item title="View Passengers" icon="o-eye" link="/admin/view-users" />
                 <x-menu-item title="Add User" icon="o-user-plus" link="/admin/add-user" />
                 <x-menu-item title="View Saccos" icon="o-user-group" link="/admin/view-saccos" />
                 <x-menu-item title="Add Sacco" icon="o-plus" link="/admin/add-sacco" />
@@ -39,7 +39,32 @@
  
         {{-- The `$slot` goes here --}}
         <x-slot:content>
-            Welcome :)
+            <div class="flex">
+            <x-stat title="Messages" value="44" icon="o-envelope" tooltip="Hello" />
+ 
+            <x-stat
+                title="Sales"
+                description="This month"
+                value="22.124"
+                icon="o-arrow-trending-up"
+                tooltip-bottom="There" />
+            
+            <x-stat
+                title="Lost"
+                description="This month"
+                value="34"
+                icon="o-arrow-trending-down"
+                tooltip-left="Ops!" />
+            
+            <x-stat
+                title="Sales"
+                description="This month"
+                value="22.124"
+                icon="o-arrow-trending-down"
+                class="text-orange-500"
+                color="text-pink-500"
+                tooltip-right="Gosh!" />
+            </div>
         </x-slot:content>
     </x-main>
 </div>

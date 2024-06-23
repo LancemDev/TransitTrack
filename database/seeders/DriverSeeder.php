@@ -28,5 +28,16 @@ class DriverSeeder extends Seeder
                 'last_logout' => Carbon::now(),
             ]);
         }
+
+        DB::table('drivers')->insert([
+            [
+                'name' => 'Driver Doe',
+                'email' => 'driver@example.com',
+                'phone' => '0712345678',
+                'password' => bcrypt('password'),
+                'last_login' => Carbon::now(),
+                'last_logout' => Carbon::now(),
+            ],
+        ]);
     }
 }
