@@ -22,6 +22,7 @@ class Home extends Component
     public $color;
     public $saccoAdminId;
     public $sacco_name;
+    public $sacco_description;
     public bool $showAddVehicleModal = false;
     public bool $showAddDriverModal = false;
     public bool $showWelcomeModal = true;
@@ -32,6 +33,7 @@ class Home extends Component
         $saccoAdmin = SaccoAdmin::find($this->saccoAdminId);
         $sacco = Sacco::find($saccoAdmin->sacco_id);
         $this->sacco_name = $sacco->name;
+        $this->sacco_description = $sacco->description;
     }
 
     public function render()

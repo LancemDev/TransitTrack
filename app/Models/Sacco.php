@@ -13,6 +13,7 @@ class Sacco extends Model
         'name',
         'registration_number',
         'email',
+        'description',
         'phone',
         'address',
         'logo',

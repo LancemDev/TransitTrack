@@ -14,6 +14,7 @@
                     <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
                         
                     </x-list-item>
+                    <x-theme-toggle darkTheme="coffee" lightTheme="bumblebee" />
  
                     <x-menu-separator />
                 @endif

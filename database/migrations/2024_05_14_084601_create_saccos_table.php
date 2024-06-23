@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('saccos', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('description');
             $table->string('registration_number')->unique();
             $table->string('email')->unique();
             $table->string('phone')->unique();

@@ -9,6 +9,7 @@
                     <x-menu-separator />
                     <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
                     </x-list-item>
+                    <x-theme-toggle darkTheme="coffee" lightTheme="bumblebee" /> 
                     <x-menu-separator />
                 @endif
                 <x-menu-item title="Dashboard" icon="o-home" link="/sacco/home" />
@@ -22,7 +23,7 @@
 
         {{-- The `$slot` goes here --}}
         <x-slot:content>
-            <x-header wire:model="sacco_name" subtitle="X Sacco description" size="text-xl" separator />
+            <x-header title="{{ $sacco_name ?? 'Default Sacco Name' }}" subtitle="{{ $sacco_description ?? 'Default description' }}" size="text-xl" separator />
             <div class="flex">
                 <x-stat title="Total Drivers" value="22" icon="o-users" tooltip-bottom="Total registered drivers" />
                 {{-- <x-stat title="Total Drivers" value="{{ $totalDrivers }}" icon="o-users" tooltip-bottom="Total registered drivers" /> --}}

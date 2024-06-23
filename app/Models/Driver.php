@@ -15,8 +15,16 @@ class Driver extends Authenticatable
         'name',
         'email',
         'phone',
+        'avatar_path',
         'password',
+        'sacco_id',
         'last_login',
         'last_logout'
     ];
+
+    public function sacco()
+    {
+        return $this->belongsTo(Sacco::class); // Assuming 'sacco_id' is the foreign key in the drivers table
+    }
+    
 }

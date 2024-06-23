@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Invoke other seeders
-        $this->call(UserSeeder::class);
         $this->call(SaccoSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(DriverSeeder::class);
         $this->call(VehicleSeeder::class);
         $this->call(SaccoAdminSeeder::class);
