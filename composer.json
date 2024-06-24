@@ -43,8 +43,7 @@
             "composer install",
             "php artisan key:generate --ansi",
             "php artisan migrate --graceful --ansi --seed",
-            "npm install",
-            "npm run dev"
+            "@sh -c \"command -v npm >/dev/null 2>&1 && npm install && npm run dev || (command -v yarn >/dev/null 2>&1 && yarn install && yarn run dev) || (command -v bun >/dev/null 2>&1 && bun install && bun run dev)\""
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
