@@ -106,7 +106,11 @@ Route::get('/test', function () {
 
 Route::get('/home', HomePage::class);
 
-/* Authentication routes */
+/*
+ * -------------------------
+ * Authentication Routes
+ * -------------------------
+ */
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -181,4 +185,13 @@ Route::middleware('auth:users')->group(function () {
  */
 Route::middleware('auth:driver')->group(function () {
     Route::get('driver/home', DriverHome::class)->name('driver.home');
+});
+
+/*
+ * -------------------------
+ * Test routes
+ * -------------------------
+ */
+Route::get('/test-maps', function () {
+    return view('test-maps');
 });
