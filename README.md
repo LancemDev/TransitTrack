@@ -126,7 +126,7 @@ Please ensure you first have there installed before running the project.
    ```
 2. Run necessary commands for the project
    ```sh
-   composer install
+   composer start
    ```
 
 
