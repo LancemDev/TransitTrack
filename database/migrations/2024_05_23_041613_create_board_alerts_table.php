@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('board_alerts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('driver_id'); // Add this line
-            $table->unsignedBigInteger('vehicle_id'); // Add this line
+            $table->unsignedBigInteger('driver_id');
+            $table->unsignedBigInteger('vehicle_id');
             $table->enum('status', ['full', 'empty']);
+            $table->string('location')->nullable();
             $table->timestamps();
 
             $table->foreign('driver_id')->references('id')->on('drivers'); 

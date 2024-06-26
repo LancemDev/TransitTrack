@@ -31,6 +31,10 @@ class Home extends Component
 
     public $vehicleNumberPlate;
 
+    public $location;
+
+    protected $listeners = ['locationAdded' => 'add'];
+
     public function saveVehicle()
     {
         $this->selectVehicleModal = false;
@@ -59,12 +63,17 @@ class Home extends Component
 
     
 
-    public function add()
+    public function add($latitude, $longitude)
     {
+        $status = strtolower($this->selectedOption);
+
+        $location = $latitude && $longitude ? $latitude . ', ' . $longitude : null;
+
         $alert = BoardAlert::create([
             'driver_id' => auth()->id(),
             'vehicle_id' => $this->selectedVehicleId,
-            'status' => $this->selectedOption,
+            'status' => $status,
+            'location' => $location,
         ]); 
 
         $this->success('State changed to '.($this->selectedOption == 'full' ? 'full' : 'empty').' successfully');

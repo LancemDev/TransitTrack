@@ -78,6 +78,8 @@
                     </x-slot:actions>
                 </x-form>
             </x-modal>
+
+            <script>getLocation();</script>
     
             <div class="flex flex-col items-center  h-screen">
                 <x-form wire:submit.save="add">
@@ -96,5 +98,29 @@
                 </x-form>
             </div>
         </x-slot:content>
+        <script>
+            getLocation();
+        </script>
     </x-main>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            // Emit a custom event instead of directly calling the method
+            Livewire.emit('locationAdded', position.coords.latitude, position.coords.longitude);
+        }
+
+        function showError(error) {
+            // Error handling remains the same
+        }
+
+    });
+    </script>
 </div>

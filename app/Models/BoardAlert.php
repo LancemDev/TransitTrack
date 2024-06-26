@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class BoardAlert extends Model
 {
-    protected $fillable = ['driver_id', 'vehicle_id', 'status'];
     use HasFactory;
+
+    protected $fillable = [
+        'driver_id', 
+        'vehicle_id', 
+        'status',
+        'location'
+    ];
 }
