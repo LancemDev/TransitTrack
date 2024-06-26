@@ -78,16 +78,15 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+An Online Vehicle Monitoring and Management system.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+It offeres the following platforms:
+* Passengers are able to find public service vehicles around their area and whether they are full or not
+* Saccos are able to monitor their drivers and make them accountable for their trips.
+* Passengers can keep track of the vehicles they use for security purposes
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+This project mainly aims at solving problems around public service vehicles with some of the stakeholders in the industry. 
 
-Use the `BLANK_README.md` to get started.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -109,65 +108,29 @@ Use the `BLANK_README.md` to get started.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To run the project...
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Please ensure you first have there installed before running the project.
+* npm/bun/yarn
+* php v8.2^
+* composer
+* sqlite
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-
-1. Clone the repo
+1. Clone the repo and navigate to the TransitTrack directory
    ```sh
-   git clone https://github.com/LancemDev/Online-Vehicle-Monitoring-and-Management
+   git clone https://github.com/LancemDev/TransitTrack
    ```
-2. Install NPM packages either via npm or bun
-   ```sh
-   npm install
-   ```
-   ```sh
-   bun install
-   ```
-3. Create the .env file. Then copy contents of .env.example to it and modify accordingly
-
-4. Install composer packages
+2. Run necessary commands for the project
    ```sh
    composer install
    ```
 
-5. Generate the app key from the terminal in the directory
-   ```sh
-   php artisan key:generate
-   ```
 
-6. Run npm either via npm or bun
-   ```sh
-   npm run dev
-   ```
-
-   ```sh
-   bun run dev
-   ```
-
-7. Run migrations and seeders
-   ```sh
-   php artisan migrate --seed
-   ```
-
-8. Serve the laravel app(don't terminate npm)
-   ```sh
-   php artisan serve
-   ```
-
-
+_And that's it!_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -216,8 +179,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 Lance Munyao - [@Lance_Munyao](https://twitter.com/Lance_Munyao) - munyaolance1@gmail.com
-
-Project Link: [https://github.com/LancemDev/Vehicle-Monitoring-and-Management](https://github.com/LancemDev/Vehicle-Monitoring-and-Management)
+Project Link: [https://github.com/LancemDev/TransitTrack](https://github.com/LancemDev/TransitTrack)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -228,14 +190,6 @@ Project Link: [https://github.com/LancemDev/Vehicle-Monitoring-and-Management](h
 
 
 
-<!-- * [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search) -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
