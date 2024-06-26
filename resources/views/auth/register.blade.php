@@ -74,7 +74,7 @@
           </div>
         </div>
         <!-- Left Pane -->
-        <div class="hidden lg:flex items-center justify-center flex-1 bg-gray-900 text-white">
+        <div class="hidden lg:flex items-center justify-center flex-1 bg-amber-200 text-white">
             <div class="max-w-md text-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="524.67004" height="531.39694" class="w-full" alt="https://undraw.co/illustrations" title="https://undraw.co/illustrations" viewBox="0 0 524.67004 531.39694" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <polygon points="117.67523 88.74385 113.67523 109.74385 133.61763 115.36589 131.1398 92.94604 117.67523 88.74385" fill="#a0616a" />

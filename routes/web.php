@@ -76,6 +76,10 @@ Route::get('/auth/github', function () {
     return redirect('/users/home')->with('success', 'Login successful');
 });
 
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+});
+
 
 
 Route::get('/google/auth/redirect', function () {
@@ -128,7 +132,7 @@ Route::get('/logout', function () {
         }
     }
 
-    return redirect('/');
+    return redirect('/')->with('success', 'Logout successful');
 })->name('logout');
 
 Route::get('/auth-check', function(){

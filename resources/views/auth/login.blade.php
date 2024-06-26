@@ -38,7 +38,7 @@
 
     <div class="flex h-screen">
         <!-- Left Pane -->
-        <div class="hidden lg:flex items-center justify-center flex-1 bg-gray-900 text-white">
+        <div class="hidden lg:flex items-center justify-center flex-1 bg-amber-200 text-white">
           <div class="max-w-md text-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="524.67004" height="531.39694" class="w-full" alt="https://undraw.co/illustrations" title="https://undraw.co/illustrations" viewBox="0 0 524.67004 531.39694" xmlns:xlink="http://www.w3.org/1999/xlink">
               <polygon points="117.67523 88.74385 113.67523 109.74385 133.61763 115.36589 131.1398 92.94604 117.67523 88.74385" fill="#a0616a" />
@@ -116,7 +116,8 @@
             <h1 class="text-3xl font-semibold mb-6 text-black text-center">Log In</h1>
 
             <div class="mb-4 text-sm text-gray-600 text-center">
-              <p>Don't have an account? <a href="/register" class="text-black hover:underline">Register here</a>
+              <p>Don't have an account? <a href="/register" class="text-black hover:underline">Register here</a><br />
+              <a href="/forgot-password" class="text-black hover:underline">Forgot Password? Reset here</a>
               </p>
             </div>
 

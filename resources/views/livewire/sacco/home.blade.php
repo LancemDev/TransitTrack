@@ -2,7 +2,7 @@
         @if(session('success'))
             <div class="fixed inset-x-0 top-0 flex items-end justify-right px-4 py-6 justify-end">
                     <div
-                        class="max-w-sm w-full shadow-lg rounded px-4 py-3 rounded relative bg-yellow-400 border-l-4 border-yellow-700 text-white">
+                        class="max-w-sm w-full shadow-lg rounded px-4 py-3 rounded relative bg-amber-400 border-l-4 border-amber-700 text-white">
                         <div class="p-2">
                             <div class="flex items-start">
                                 <div class="ml-3 w-0 flex-1 pt-0.5">
