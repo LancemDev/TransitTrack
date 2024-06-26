@@ -73,7 +73,7 @@ Route::get('/auth/github', function () {
     // Log the user in
     Auth::login($newUser, true);
 
-    return redirect('/home');
+    return redirect('/users/home')->with('success', 'Login successful');
 });
 
 
@@ -97,7 +97,7 @@ Route::get('/login/google/callback', function () {
     // Log the user in using a custom guard
     Auth::guard('users')->login($newUser);
 
-    return redirect('/users/home');
+    return redirect('/users/home')->with('success', 'Login successful');
 });
 
 Route::get('/test', function () {
