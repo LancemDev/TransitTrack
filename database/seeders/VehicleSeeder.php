@@ -21,6 +21,7 @@ class VehicleSeeder extends Seeder
 
         for ($i = 0; $i < 5; $i++) {
             Vehicle::create([
+                'sacco_id' => mt_rand(1, 5),
                 'number_plate' => Str::upper(Str::random(3)).'-'.mt_rand(100, 999),
                 'type' => $types[array_rand($types)],
                 'color' => $colors[array_rand($colors)],

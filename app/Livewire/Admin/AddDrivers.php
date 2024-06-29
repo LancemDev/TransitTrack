@@ -28,7 +28,7 @@ class AddDrivers extends Component
         $driver->password = bcrypt($this->password);
         $driver->save();
 
-        $this->sucess('Driver added successfully',);
+        $this->success('Driver added successfully',);
         $this->name = '';
         $this->email = '';
         $this->password = '';

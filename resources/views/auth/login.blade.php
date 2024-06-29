@@ -166,5 +166,17 @@
           </div>
         </div>
       </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+          // Check if there is a toast message
+          const toast = document.querySelector('.fixed.inset-x-0.top-0'); // Adjust the selector as needed
+          if (toast) {
+            // Set a timeout to remove the toast after 5 seconds (5000 milliseconds)
+            setTimeout(() => {
+              toast.remove();
+            }, 5000);
+          }
+        });
+      </script>
 </body>
 </html>

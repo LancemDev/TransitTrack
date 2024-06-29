@@ -25,16 +25,7 @@
                     </div>
                 </div>
         @endif
-    {{-- <x-modal wire:model="welcomeModal">
-        <x-slot:title>Welcome</x-slot>
-        
-        <p>Welcome to the Navigate app, {{ auth()->user()->name }}! This app helps you find the best public transportation routes in your area. To get started, click the "Find Routes" button below.</p>
-        
-        <x-slot:actions>
-            <x-button wire:click="closeModal" class="btn-primary">Find Routes</x-button>
-        </x-slot:actions>
-    </x-modal> --}}
-    <x-main full-width>
+        <x-main full-width>
         <x-slot:content>
             <x-header title="Navigate" subtitle="Efficient and Convenient Public Transportation for Everyone" separator with-anchor>
                 <x-slot:middle class="!justify-end">
@@ -68,12 +59,51 @@
                 var map;
                 var marker;
                 var loading = document.getElementById('loading');
-                var trail = [];  // Array to store the trail points
 
+                function getRandomCoordinates(center, radius = 0.01) {
+                    // Generate random angular distance
+                    const angle = Math.random() * Math.PI * 2;
+                    // Generate random radius distance within specified bounds
+                    const distance = Math.random() * radius;
+                    return {
+                        lat: center.lat + distance * Math.cos(angle),
+                        lng: center.lng + distance * Math.sin(angle)
+                    };
+                }
+                
+                // Define a custom icon for random pins
+                var randomPinIcon = L.divIcon({
+                    className: 'custom-div-icon',
+                    html: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                            </svg>
+                            `,
+                    iconSize: [30, 30], // Adjust based on your needs
+                    iconAnchor: [15, 30], // Adjust to make sure the icon is centered and anchored correctly
+                    popupAnchor: [0, -30], // Adjust based on your needs
+                });
+                
+                function addRandomPins(center, numberOfPins = 5) {
+                    for (let i = 0; i < numberOfPins; i++) {
+                        const randomPos = getRandomCoordinates(center);
+
+                        // Example bus details - you might want to fetch these from a server or database
+                        const busDetails = {
+                            numberPlate: `BUS-${1000 + i}`,
+                            destination: `Destination ${i + 1}`
+                        };
+
+                        // Use the custom icon for these markers and bind a popup with bus details
+                        L.marker([randomPos.lat, randomPos.lng], {icon: randomPinIcon})
+                            .addTo(map)
+                            .bindPopup(`<strong>Number Plate:</strong> ${busDetails.numberPlate}<br><strong>Destination:</strong> ${busDetails.destination}`);
+                    }
+                }
+                
+                // Modify the existing getLocation function to call addRandomPins
                 function getLocation() {
-                    // Show the loading spinner
                     loading.style.display = 'block';
-
+                
                     if (navigator.geolocation) {
                         navigator.geolocation.getCurrentPosition(function(position) {
                             var pos = {
@@ -81,61 +111,37 @@
                                 lng: position.coords.longitude
                             };
                             console.log(pos);
-
-                            // Initialize the map if it's not already initialized
+                
                             if (!map) {
-                                map = L.map('map').setView([pos.lat, pos.lng], 13);
+                                map = L.map('map').setView([pos.lat, pos.lng], 16);
                                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                     maxZoom: 19,
                                 }).addTo(map);
                             } else {
-                                // Update the map center without changing the zoom level
                                 map.panTo([pos.lat, pos.lng]);
                             }
-
-                            // Remove the old marker if it exists
+                
                             if (marker) {
                                 map.removeLayer(marker);
                             }
-
-                            // Add a new marker at the current location
+                
                             marker = L.marker([pos.lat, pos.lng]).addTo(map);
-
-                            // Add the current location to the trail
-                            trail.push([pos.lat, pos.lng]);
-
-                            // Draw the trail on the map
-                            L.polyline(trail, {color: 'red'}).addTo(map);
-                        });
+                
+                            // Add random pins around the user
+                            addRandomPins(pos, 5); // Adjust the number of pins as needed
+                
+                            loading.style.display = 'none';
+                        }, function(error) {
+                            console.error("Geolocation is not supported by this browser.");
+                            loading.style.display = 'none';
+                        }, {enableHighAccuracy: true});
+                    } else {
+                        console.error("Geolocation is not supported by this browser.");
+                        loading.style.display = 'none';
                     }
                 }
-
-                // Call getLocation immediately
-                getLocation();
-
-                // Then call getLocation every 5 seconds
-                setInterval(getLocation, 5000);
-
-                // Listen for the searchResults event from Livewire
-                document.addEventListener('livewire:load', function () {
-                    window.livewire.on('searchResults', function (results) {
-                        // Clear the map
-                        if (marker) {
-                            map.removeLayer(marker);
-                        }
-
-                        // Add a marker for each result
-                        results.forEach(function (result) {
-                            var lat = result.lat; // Replace with the actual latitude property
-                            var lon = result.lon; // Replace with the actual longitude property
-
-                            // Update the map center without changing the zoom level
-                            map.panTo([lat, lon]);
-
-                            // Add a new marker at the search result location
-                            marker = L.marker([lat, lon]).addTo(map);
-                        });
-                    });
+                document.addEventListener('DOMContentLoaded', function() {
+                    getLocation(); // Ensure this function is called to initialize the map
                 });
             </script>
         </x-slot:content>

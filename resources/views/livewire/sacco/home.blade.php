@@ -57,7 +57,7 @@
                 <x-stat title="Cancelled Trips" description="This month" value="04" icon="o-arrow-trending-down" class="text-orange-500" color="text-pink-500" tooltip-bottom="Trips cancelled this month" />
             </div>
 
-            {{-- Welcome Modal --}}
+            <livewire:chart.sacco-admin.pie />
             
         </x-slot:content>
     </x-main>

@@ -65,11 +65,13 @@
  
         {{-- The `$slot` goes here --}}
         <x-slot:content>
-            <x-header title="Registered System Users" separator />
-            <livewire:chart.admin.bar />
+            <div>
+                <x-header title="Registered System Users" separator />
+                <livewire:chart.admin.bar />
 
-            <x-header title="Vehicles" separator />
-            <livewire:chart.admin.pie />
+                <x-header title="Vehicles" separator />
+                <livewire:chart.admin.pie />
+            </div>
         </x-slot:content>
     </x-main>
 </div>

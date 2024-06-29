@@ -36,8 +36,6 @@ use App\Livewire\Admin\AddUser;
 use App\Livewire\Sacco\ManageDrivers;
 use App\Livewire\Sacco\ManageVehicles;
 
-use App\Livewire\Chart\Bar as BarChart;
-
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
@@ -180,7 +178,7 @@ Route::middleware('auth:admin')->group(function () {
  * User routes
  * -------------------------
  */
-Route::middleware('auth:users')->group(function () {
+Route::middleware('auth:web')->group(function () {
     Route::get('users/home', UsersHome::class)->name('user.home');
 });
 
@@ -202,4 +200,3 @@ Route::get('/test-maps', function () {
     return view('test-maps');
 });
 
-Route::get('/chart-bar', BarChart::class);

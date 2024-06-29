@@ -9,6 +9,7 @@ class Vehicle extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'sacco_id',
         'number_plate',
         'type',
         'color'
