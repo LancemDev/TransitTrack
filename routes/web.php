@@ -36,6 +36,8 @@ use App\Livewire\Admin\AddUser;
 use App\Livewire\Sacco\ManageDrivers;
 use App\Livewire\Sacco\ManageVehicles;
 
+use App\Livewire\Chart\Bar as BarChart;
+
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
@@ -199,3 +201,5 @@ Route::middleware('auth:driver')->group(function () {
 Route::get('/test-maps', function () {
     return view('test-maps');
 });
+
+Route::get('/chart-bar', BarChart::class);

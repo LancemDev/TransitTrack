@@ -18,8 +18,8 @@
                     <x-menu-separator />
                 @endif
  
+                <x-menu-item title="Admin Dashboard" icon="o-home" link="/admin/home" />
                 <x-menu-item title="View Passengers" icon="o-eye" link="/admin/view-users" />
-                <x-menu-item title="Add Passenger" icon="o-user-plus" link="/admin/add-user" />
                 <x-menu-item title="View Saccos" icon="o-user-group" link="/admin/view-saccos" />
                 <x-menu-item title="Add Sacco" icon="o-plus" link="/admin/add-sacco" />
                 <x-menu-item title="View Drivers" icon="o-eye" link="/admin/view-drivers" />
