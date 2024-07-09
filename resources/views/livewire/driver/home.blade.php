@@ -93,8 +93,11 @@
                     <x-radio label="Select one" :options="$options" wire:model="selectedOption" />
 
                     <x-slot:actions>
-                        <x-button type="submit" label="Save" class="btn btn-sucess" />
+                        <x-button type="button" label="Save" class="btn btn-success" onclick="navigator.geolocation.getCurrentPosition(function(position) { sendLocationToLivewire(position.coords.latitude, position.coords.longitude); })" />
                     </x-slot:actions>
+                    {{-- <x-slot:actions>
+                        <x-button type="button" label="Save" class="btn btn-success" onclick="navigator.geolocation.getCurrentPosition(function(position) { sendLocationToLivewire(position.coords.latitude, position.coords.longitude); })" />
+                    </x-slot:actions>--}}
                 </x-form>
             </div>
         </x-slot:content>

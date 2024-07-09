@@ -13,7 +13,6 @@
     <div id="map"></div>
     <script async defer
 
-    // Replace YOUR_API_KEY with your actual Google Maps API key
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao&callback=initMap">
     </script>
     <script>

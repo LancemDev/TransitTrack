@@ -84,19 +84,32 @@
                 });
                 
                 function addRandomPins(center, numberOfPins = 5) {
+                    // Sample data arrays
+                    const driverNames = ['John Doe', 'Jane Smith', 'Michael Brown', 'Emily Johnson', 'David Wilson'];
+                    const saccos = ['Sacco A', 'Sacco B', 'Sacco C', 'Sacco D', 'Sacco E'];
+                    const routes = ['Nairobi CBD - Juja ', 'Nairobi CBD - Embakasi', 'Nairobi CBD - Lavington', 'Madaraka Estate - Langata', 'Utawala - Umoja'];
+                
                     for (let i = 0; i < numberOfPins; i++) {
                         const randomPos = getRandomCoordinates(center);
-
-                        // Example bus details - you might want to fetch these from a server or database
+                
+                        // Randomly select driver name, sacco, and route
+                        const driverName = driverNames[Math.floor(Math.random() * driverNames.length)];
+                        const sacco = saccos[Math.floor(Math.random() * saccos.length)];
+                        const route = routes[Math.floor(Math.random() * routes.length)];
+                
+                        // Updated bus details with new fields
                         const busDetails = {
                             numberPlate: `BUS-${1000 + i}`,
-                            destination: `Destination ${i + 1}`
+                            destination: `Destination ${i + 1}`,
+                            driverName: driverName,
+                            sacco: sacco,
+                            route: route
                         };
-
-                        // Use the custom icon for these markers and bind a popup with bus details
+                
+                        // Update the popup content to include driver name, sacco, and route
                         L.marker([randomPos.lat, randomPos.lng], {icon: randomPinIcon})
                             .addTo(map)
-                            .bindPopup(`<strong>Number Plate:</strong> ${busDetails.numberPlate}<br><strong>Destination:</strong> ${busDetails.destination}`);
+                            .bindPopup(`<strong>Number Plate:</strong> ${busDetails.numberPlate}<br><strong>Destination:</strong> ${busDetails.destination}<br><strong>Driver:</strong> ${busDetails.driverName}<br><strong>Sacco:</strong> ${busDetails.sacco}<br><strong>Route:</strong> ${busDetails.route}`);
                     }
                 }
                 
