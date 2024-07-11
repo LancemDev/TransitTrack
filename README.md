@@ -179,6 +179,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 Lance Munyao - [@Lance_Munyao](https://twitter.com/Lance_Munyao) - munyaolance1@gmail.com
+Arnold Oguda - ogudaarnold@gmail.com
 Project Link: [https://github.com/LancemDev/TransitTrack](https://github.com/LancemDev/TransitTrack)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
