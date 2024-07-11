@@ -43,7 +43,7 @@ Route::get('/', function () {
 });
 
 Route::post('/new/login', [AuthLoginController::class, 'login'])->name('new.auth.login');
-Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('/new/register', [AuthController::class, 'register'])->name('new.auth.register');
 
 /*
  * -------------------------
