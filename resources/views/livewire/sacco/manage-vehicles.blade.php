@@ -10,12 +10,8 @@
                 {{-- User --}}
                 @if($user = auth()->user())
                     <x-menu-separator />
- 
-                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
-                        
-                    </x-list-item>
-                    <x-theme-toggle darkTheme="coffee" lightTheme="bumblebee" />
- 
+                        <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
+                        </x-list-item>
                     <x-menu-separator />
                 @endif
  
@@ -56,7 +52,7 @@
             </x-table>
 
             {{-- Add vehicle modal --}}
-            <x-modal wire:model="showAddVehicleModal" persistent backdrop-blur>
+            <x-modal wire:model="showAddVehicleModal" title="Add Vehicle" persistent backdrop-blur>
                 <x-form wire:submit.save="addVehicle">
                     <x-input wire:model="number_plate" label="Plate" omit-error />
                     @php
@@ -98,7 +94,7 @@
             </x-modal>
 
             {{-- Edit vehicle modal --}}
-            <x-modal wire:model="editVehicleModal" persistent backdrop-blur>
+            <x-modal wire:model="editVehicleModal" title="Update Vehicle" persistent backdrop-blur>
                 <x-form wire:submit="updateVehicle">
                     <x-input wire:model="number_plate" label="Plate" omit-error />
                     @php

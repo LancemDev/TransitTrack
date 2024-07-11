@@ -19,13 +19,10 @@
                     @endif
      
                     <x-menu-item title="Admin Dashboard" icon="o-home" link="/admin/home" />
-                    <x-menu-item title="View Passengers" icon="o-eye" link="/admin/view-users" />
-                    <x-menu-item title="View Saccos" icon="o-user-group" link="/admin/view-saccos" />
-                    <x-menu-item title="Add Sacco" icon="o-plus" link="/admin/add-sacco" />
-                    <x-menu-item title="View Drivers" icon="o-eye" link="/admin/view-drivers" />
-                    <x-menu-item title="Add Driver" icon="o-user-plus" link="/admin/add-driver" />
-                    <x-menu-item title="View Vehicles" icon="o-truck" link="/admin/view-vehicles" />
-                    <x-menu-item title="Add Vehicle" icon="o-plus" link="/admin/add-vehicle" />
+                    <x-menu-item title="Manage Passengers" icon="o-eye" link="/admin/view-users" />
+                    <x-menu-item title="Manage Saccos" icon="o-user-group" link="/admin/view-saccos" />
+                    <x-menu-item title="Manage Drivers" icon="o-eye" link="/admin/view-drivers" />
+                    <x-menu-item title="Manage Vehicles" icon="o-truck" link="/admin/view-vehicles" />
                     <x-menu-sub title="Settings" icon="o-cog-6-tooth">
                         <x-menu-item title="Log out" icon="o-power" link="/logout" />
                         <x-menu-item title="Change Theme" icon="o-moon">
@@ -51,6 +48,7 @@
             @endphp
     
             <x-header title="Saccos" with-anchor separator />
+            <x-button label="Add Sacco" icon="o-plus" wire:click="create" class="btn btn-primary" />
             <x-table :headers="$headers" :rows="$saccos" striped >
                 @foreach($saccos as $sacco)
                     @scope('actions', $sacco)
@@ -62,7 +60,7 @@
                 @endforeach
             </x-table>
     
-            <x-modal title="Edit User" wire:model="showEditModal">
+            <x-modal title="Edit Sacco" wire:model="showEditModal">
                 <x-form wire:submit="update">
                     <x-input wire:model="name" label="Name" />
                     <x-input wire:model="registration_number" label="Registration Number" />
@@ -74,6 +72,24 @@
                     </x-slot:actions>
                 </x-form>
             </x-modal>
+
+            <x-modal title="Create Sacco" wire:model="showCreateModal">
+                <x-form wire:submit="store">
+                    <x-input wire:model="name" label="Name" />
+                    <x-input wire:model="registration_number" label="Registration Number" />
+                    <x-input wire:model="phone" label="Phone" />
+                    <x-input wire:model="email" label="E-mail Address" />
+                    <x-input wire:model="description" label="Description" />
+                    <x-input wire:model="password" label="Password" type="password" />
+                    <x-input wire:model="address" label="Address" />
+    
+                    <x-slot:actions>    
+                        <x-button wire:click="closeModal" class="btn btn-primary" spinner label="Cancel" />
+                        <x-button type="submit" class="btn btn-success" label="Save" />
+                    </x-slot:actions>
+                </x-form>
+            </x-modal>
+            
             </x-slot:content>
         </x-main>
     </div>

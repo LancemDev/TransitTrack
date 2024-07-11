@@ -29,7 +29,7 @@
         {{-- SIDEBAR --}}
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
             <div>
-            @if(empty($this->driverAvatarPath))
+                @if(empty($this->driverAvatarPath))
                     <x-form wire:submit.prevent="uploadPhoto">
                         <x-file wire:model="photo" accept="image/png" crop-after-change>
                             <img src="/empty_user.jpeg" class="h-40 rounded-lg" />

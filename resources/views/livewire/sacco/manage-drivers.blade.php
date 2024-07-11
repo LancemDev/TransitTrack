@@ -10,12 +10,8 @@
                 {{-- User --}}
                 @if($user = auth()->user())
                     <x-menu-separator />
- 
-                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
-                        
-                    </x-list-item>
-                    <x-theme-toggle darkTheme="coffee" lightTheme="bumblebee" />
- 
+                        <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
+                        </x-list-item>
                     <x-menu-separator />
                 @endif
  
@@ -56,7 +52,7 @@
             </x-table>
 
             {{-- Add driver modal --}}
-            <x-modal wire:model="showAddDriverModal" persistent backdrop-blur>
+            <x-modal wire:model="showAddDriverModal" title="Add Driver" persistent backdrop-blur>
                 <x-form wire:submit.save="addDriver">
                     <x-input wire:model="name" label="Name" omit-error />
                     <x-input wire:model="email" label="Email" omit-error />
@@ -71,7 +67,7 @@
             </x-modal>
 
             {{-- Edit driver modal --}}
-            <x-modal wire:model="editDriverModal" persistent backdrop-blur>
+            <x-modal wire:model="editDriverModal" title="Update Driver" persistent backdrop-blur>
                 <x-form wire:submit="updateDriver">
                     <x-input wire:model="name" label="Name" omit-error />
                     <x-input wire:model="email" label="Email" omit-error />

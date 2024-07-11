@@ -17,12 +17,59 @@ class ViewSaccos extends Component
     public $phone;
     public $address;
     public $logo;
+    public $description;
+    public $password;
     public bool $showEditModal = false;
+    public bool $showCreateModal = false;
 
     public function delete($id)
     {
         Sacco::destroy($id);
         $this->success('Sacco deleted successfully');
+    }
+
+    public function create()
+    {
+        $this->name = '';
+        $this->registration_number = '';
+        $this->email = '';
+        $this->phone = '';
+        $this->address = '';
+        $this->logo = '';
+        $this->description = '';
+        $this->password = '';
+        $this->showCreateModal = true;
+    }
+
+    public function store()
+    {
+        $this->validate([
+            'name' => 'required',
+            'registration_number' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'description' => 'required',
+            'password' => 'required',
+            'address' => 'required',
+        ]);
+
+        $sacco = new Sacco();
+        $sacco->name = $this->name;
+        $sacco->registration_number = $this->registration_number;
+        $sacco->email = $this->email;
+        $sacco->phone = $this->phone;
+        $sacco->address = $this->address;
+        $sacco->logo = $this->logo;
+        $sacco->description = $this->description;
+        $sacco->password = $this->password;
+        $sacco->address = $this->address;
+
+        if ($sacco->save()) {
+            $this->showCreateModal = false;
+            $this->success('Sacco added successfully');
+        } else {
+            $this->error('Failed to add sacco');
+        }
     }
 
     public function edit($id)
