@@ -93,11 +93,9 @@
                     <x-radio label="Select one" :options="$options" wire:model="selectedOption" />
 
                     <x-slot:actions>
-                        <x-button type="button" label="Save" class="btn btn-success" onclick="navigator.geolocation.getCurrentPosition(function(position) { sendLocationToLivewire(position.coords.latitude, position.coords.longitude); })" />
+                        <x-button type="button" label="Save" class="btn btn-success" wire:click="add" />
                     </x-slot:actions>
-                    {{-- <x-slot:actions>
-                        <x-button type="button" label="Save" class="btn btn-success" onclick="navigator.geolocation.getCurrentPosition(function(position) { sendLocationToLivewire(position.coords.latitude, position.coords.longitude); })" />
-                    </x-slot:actions>--}}
+                    
                 </x-form>
             </div>
         </x-slot:content>
@@ -105,25 +103,4 @@
             getLocation();
         </script>
     </x-main>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                alert("Geolocation is not supported by this browser.");
-            }
-        }
-
-        function showPosition(position) {
-            // Emit a custom event instead of directly calling the method
-            Livewire.emit('locationAdded', position.coords.latitude, position.coords.longitude);
-        }
-
-        function showError(error) {
-            // Error handling remains the same
-        }
-
-    });
-    </script>
 </div>

@@ -50,13 +50,12 @@
             <x-header title="{{ $sacco_name ?? 'Default Sacco Name' }}" subtitle="{{ $sacco_description ?? 'Default description' }}" size="text-xl" separator />
             <div class="flex">
                 <x-stat title="Total Drivers" value="22" icon="o-users" tooltip-bottom="Total registered drivers" />
-                {{-- <x-stat title="Total Drivers" value="{{ $totalDrivers }}" icon="o-users" tooltip-bottom="Total registered drivers" /> --}}
-                <x-stat title="Active Trips" description="Today" value="22" icon="o-arrow-trending-up" tooltip-bottom="Trips currently in progress" />
+                <x-stat title="Active Trips" description="Today h" value="22" icon="o-arrow-trending-up" tooltip-bottom="Trips currently in progress" />
                 <x-stat title="Completed Trips" description="This month" value="12" icon="o-check-circle" tooltip-bottom="Trips completed this month" />
                 <x-stat title="Cancelled Trips" description="This month" value="04" icon="o-arrow-trending-down" class="text-orange-500" color="text-pink-500" tooltip-bottom="Trips cancelled this month" />
             </div>
 
-            <livewire:chart.sacco-admin.pie />
+            <livewire:chart.sacco-admin.line />
             
         </x-slot:content>
     </x-main>

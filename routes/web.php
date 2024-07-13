@@ -99,7 +99,7 @@ Route::get('/login/google/callback', function () {
     );
 
     // Log the user in using a custom guard
-    Auth::guard('users')->login($newUser);
+    Auth::guard('web')->login($newUser);
 
     return redirect('/users/home')->with('success', 'Login successful');
 });

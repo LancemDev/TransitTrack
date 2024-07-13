@@ -63,20 +63,21 @@ class Home extends Component
 
     
 
-    public function add($latitude, $longitude)
+    public function add()
     {
+        // dd($latitude, $longitude);
         $status = strtolower($this->selectedOption);
 
-        $location = $latitude && $longitude ? $latitude . ', ' . $longitude : null;
+        // $location = $latitude && $longitude ? $latitude . ', ' . $longitude : null;
 
         $alert = BoardAlert::create([
             'driver_id' => auth()->id(),
             'vehicle_id' => $this->selectedVehicleId,
             'status' => $status,
-            'location' => $location,
+            // 'location' => $location,
         ]); 
 
-        $this->success('State changed to '.($this->selectedOption == 'full' ? 'full' : 'empty').' successfully');
+        $this->success('State changed successfully');
     }
     
     public function fetchVehicleDetails()
