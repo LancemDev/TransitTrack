@@ -18,8 +18,6 @@ return new class extends Migration
             $table->enum('type', ['bus', 'matatu', 'taxi', 'lorry', 'motorcycle', 'bicycle'])->default('bus');
             $table->string('color');
             $table->timestamps();
-
-            $table->index('sacco_id');
         });
     }
 
