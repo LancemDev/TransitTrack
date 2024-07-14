@@ -84,7 +84,7 @@
                         ]; 
                     @endphp
                     <x-select label="Type" :options="$options" wire:model="type" />
-                    <x-input wire:model="color" label="Color" omit-error />
+                    <x-colorpicker wire:model="color" label="Select a color" hint="Please, a nice color" icon="o-swatch" />
 
                     <x-slot:actions>
                         <x-button type="submit" label="Save" class="btn btn-success" spinner />
@@ -126,7 +126,7 @@
                         ]; 
                     @endphp
                     <x-select label="Type" :options="$options" wire:model="type" />
-                    <x-input wire:model="color" label="Color" omit-error />
+                    <x-colorpicker wire:model="color" label="Select a color" hint="Please, a nice color" icon="o-swatch" />
 
                     <x-slot:actions>
                         <x-button type="submit" label="Save" class="btn btn-success" spinner />

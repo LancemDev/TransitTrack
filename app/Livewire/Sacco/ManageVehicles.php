@@ -39,6 +39,8 @@ class ManageVehicles extends Component
         $vehicle->number_plate = $this->number_plate;
         $vehicle->type = $this->type;
         $vehicle->color = $this->color;
+        $sacco_id = auth()->user()->sacco_id;
+        $vehicle->sacco_id = $sacco_id;
 
         if ($vehicle->save()) {
             $this->showAddVehicleModal = false;
