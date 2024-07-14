@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DriverSeeder::class);
         $this->call(VehicleSeeder::class);
         $this->call(SaccoAdminSeeder::class);
+        $this->call(RouteSeeder::class);
 
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('trip_revenues', function (Blueprint $table) {
             $table->id();
             $table->foreignId('driver_id')->constrained();
-            $table->foreignId('route_id')->constrained();
+            // $table->foreignId('route_id')->constrained();
             $table->integer('number_of_trips');
             $table->string('off_peak_revenue');
             $table->string('on_peak_revenue');

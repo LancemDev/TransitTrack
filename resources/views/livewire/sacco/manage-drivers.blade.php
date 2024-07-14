@@ -27,20 +27,28 @@
         {{-- The `$slot` goes here --}}
         <x-slot:content>
             @php
-                $users = \App\Models\Driver::all();
+                $sacco_id = auth()->user()->sacco_id;
+                $users = \App\Models\Driver::with('activities')->where('sacco_id', $sacco_id)->get();
 
                 $headers = [
                     ['key' => 'id', 'label' => '#'],
                     ['key' => 'name', 'label' => 'Name'],
                     ['key' => 'email', 'label' => 'E-Mail Address'],
                     ['key' => 'phone', 'label' => 'Phone'],
+                    ['key' => 'latest_activity_status', 'label' => 'Status'], // Add status header
                     ['key' => 'actions', 'label' => 'Actions'],
+                ];
+
+                $row_decoration = [
+                    'bg-green-500/25' => fn($user) => $user->latest_activity_status === 'currently in a trip',
+                    'bg-gray-500/25' => fn($user) => $user->latest_activity_status === 'yet to start working',
+                    'bg-blue-500/25' => fn($user) => $user->latest_activity_status === 'clocked out',
                 ];
             @endphp
 
             <x-header title="Drivers" with-anchor separator />
-            <x-button label="Add Driver" wire:click="addDriverModal" class="btn btn-primary" />
-            <x-table :headers="$headers" :rows="$users" striped >
+            <x-button label="Add Driver" icon="o-plus" wire:click="addDriverModal" class="btn btn-primary" />
+            <x-table :headers="$headers" :rows="$users" :row-decoration="$row_decoration" >
                 @foreach($users as $user)
                     @scope('actions', $user)
                         <div class="flex">
@@ -54,6 +62,13 @@
             {{-- Add driver modal --}}
             <x-modal wire:model="showAddDriverModal" title="Add Driver" persistent backdrop-blur>
                 <x-form wire:submit.save="addDriver">
+                    <x-file wire:model="avatar" label="Profile Photo" omit-error accept="image/*" crop-after-change >
+                        @if($avatar)
+                            <img src="{{ $avatar->temporaryUrl() }}" class="h-40 rounded-lg" />
+                        @else
+                            <img src="{{ asset('empty_user.jpeg') }}" class="h-40 rounded-lg" />
+                        @endif
+                    </x-file>
                     <x-input wire:model="name" label="Name" omit-error />
                     <x-input wire:model="email" label="Email" omit-error />
                     <x-input wire:model="phone" label="Phone" omit-error />
@@ -69,6 +84,14 @@
             {{-- Edit driver modal --}}
             <x-modal wire:model="editDriverModal" title="Update Driver" persistent backdrop-blur>
                 <x-form wire:submit="updateDriver">
+                    <x-file wire:model="avatar" label="Profile Photo" omit-error accept="image/*" crop-after-change >
+                        @if($avatar)
+                            <img src="{{ $avatar->temporaryUrl() }}" class="h-40 rounded-lg" />
+                        @else
+                            <img src="{{ asset('storage/' . $this->avatar) }}" class="h-40 rounded-lg" />
+                        @endif
+                    </x-file>
+                    <x-input wire:model="sacco_name" label="Sacco Name" omit-error readonly />
                     <x-input wire:model="name" label="Name" omit-error />
                     <x-input wire:model="email" label="Email" omit-error />
                     <x-input wire:model="phone" label="Phone" omit-error />

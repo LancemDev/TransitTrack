@@ -39,7 +39,7 @@
             @endphp
 
             <x-header title="Vehicles" with-anchor separator />
-            <x-button label="Add Vehicle" wire:click="addVehicleModal" class="btn btn-primary" />
+            <x-button label="Add Vehicle" icon="o-plus" wire:click="addVehicleModal" class="btn btn-primary" />
             <x-table :headers="$headers" :rows="$users" striped >
                 @foreach($users as $user)
                     @scope('actions', $user)
