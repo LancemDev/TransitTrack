@@ -92,7 +92,6 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => 'require',
-            // 'options' => (env('DB_OPTIONS') ? [PDO::PGSQL_ATTR_OPTIONS => env('DB_OPTIONS')] : []),
         ],
 
         'sqlsrv' => [
