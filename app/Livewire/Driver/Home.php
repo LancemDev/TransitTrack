@@ -8,6 +8,10 @@ use Mary\Traits\Toast;
 use App\Models\BoardAlert;
 use App\Models\Driver;
 use App\Models\Vehicle;
+use App\Models\DriverActivity;
+use App\Models\Fare;
+use App\Models\TripRevenue;
+use App\Models\Route;
 
 class Home extends Component
 {

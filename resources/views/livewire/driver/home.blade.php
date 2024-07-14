@@ -29,7 +29,7 @@
         {{-- SIDEBAR --}}
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
             <div>
-                @if(empty($this->driverAvatarPath))
+                {{-- @if(empty($this->driverAvatarPath))
                     <x-form wire:submit.prevent="uploadPhoto">
                         <x-file wire:model="photo" accept="image/png" crop-after-change>
                             <img src="/empty_user.jpeg" class="h-40 rounded-lg" />
@@ -38,9 +38,11 @@
                             <x-button label="Update Profile Photo" class="btn btn-success" type="submit" />
                         </x-slot:actions>
                     </x-form>
-                @else
+                @else --}}
+                @if($this->driverAvatarPath)
                     <img src="{{ asset('storage/' . $this->driverAvatarPath) }}" class="h-40 rounded-lg" />
                 @endif
+                {{-- @endif --}}
             </div>
             <x-stat
                     title="Driver Name"
