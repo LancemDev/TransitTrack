@@ -15,22 +15,22 @@ class RouteSeeder extends Seeder
     {
         DB::table('routes')->insert([
             [
-                'name' => 'Route 521',
-                'start_point' => 'Location A',
-                'end_point' => 'Location B',
-                'waypoints' => json_encode(['Location C', 'Location D']),
+                'name' => 'Nairobi-Kiserian',
+                'start_point' => 'Kiserian',
+                'end_point' => 'Town',
+                'waypoints' => json_encode(['Rongai', 'Nyayo']),
             ],
             [
-                'name' => 'Route 2',
-                'start_point' => 'Location E',
-                'end_point' => 'Location F',
-                'waypoints' => json_encode(['Location G', 'Location H']),
+                'name' => 'Town-Langata',
+                'start_point' => 'Langata',
+                'end_point' => 'Town',
+                'waypoints' => json_encode(['Kibera', 'Nyayo']),
             ],
             [
-                'name' => 'Route 3',
-                'start_point' => 'Location I',
-                'end_point' => 'Location J',
-                'waypoints' => json_encode(['Location K', 'Location L']),
+                'name' => 'Ngumo-Town',
+                'start_point' => 'Ngumo',
+                'end_point' => 'TownJ',
+                'waypoints' => json_encode(['Kenyatta', 'Nairobi-West']),
             ],
         ]);
     }
