@@ -33,34 +33,5 @@ class UserSeeder extends Seeder
                 'updated_at' => now()
             ]);
         }
-
-        DB::table('sacco_admins')->insert([
-            'name' => 'Jane Doe',
-            'email' => 'sacco@example.com',
-            'phone' => '0714345678',
-            'sacco_id' => 3,
-            'password' => bcrypt('password'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'name' => 'John Doe',
-            'email' => 'driver@example.com',
-            'phone' => '0712645678',
-            'sacco_id' => 3,
-            'password' => bcrypt('password'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('admins')->insert([
-            'name' => 'John Doe',
-            'email' => 'admin@example.com',
-            'phone' => '0712745678',
-            'password' => bcrypt('password'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
     }
 }

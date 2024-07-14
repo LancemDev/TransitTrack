@@ -16,7 +16,7 @@ class VehicleSeeder extends Seeder
     {
         DB::table('vehicles')->delete();
 
-        $types = ['bus', 'matatu', 'taxi', 'lorry', 'motorcycle', 'bicycle'];
+        $types = ['bus', 'matatu', 'motorcycle'];
         $colors = ['Red', 'Blue', 'Green', 'Black', 'White'];
 
         for ($i = 0; $i < 5; $i++) {
