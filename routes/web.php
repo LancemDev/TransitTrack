@@ -59,7 +59,7 @@ Route::get('/auth/github', function () {
     try {
         $user = Socialite::driver('github')->user();
     } catch (\Laravel\Socialite\Two\InvalidStateException $e) {
-        return redirect('/auth/github'); // Redirect back to the OAuth route.
+        return redirect('/auth/github'); 
     }
 
     $newUser = \App\Models\User::firstOrCreate(
@@ -70,7 +70,6 @@ Route::get('/auth/github', function () {
         ]
     );
 
-    // Log the user in
     Auth::login($newUser, true);
 
     return redirect('/users/home')->with('success', 'Login successful');
