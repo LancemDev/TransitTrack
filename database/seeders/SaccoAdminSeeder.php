@@ -14,8 +14,8 @@ class SaccoAdminSeeder extends Seeder
     {
         // Create a new Sacco Admin
         $saccoAdmin = new \App\Models\SaccoAdmin();
-        $saccoAdmin->name = 'Sacco Admin';
-        $saccoAdmin->email = 'sacco-admin@example.com';
+        $saccoAdmin->name = 'Serian Admin';
+        $saccoAdmin->email = 'serian-admin@example.com';
         $saccoAdmin->phone = '0712345678';
         $saccoAdmin->sacco_id = 1;
         $saccoAdmin->password = bcrypt('password');
