@@ -74,7 +74,7 @@
                 // Define a custom icon for random pins
                 var randomPinIcon = L.divIcon({
                     className: 'custom-div-icon',
-                    html: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    html: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FF00FF" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                             </svg>
                             `,
@@ -84,32 +84,31 @@
                 });
                 
                 function addRandomPins(center, numberOfPins = 5) {
-                    // Sample data arrays
-                    const driverNames = ['John Doe', 'Jane Smith', 'Michael Brown', 'Emily Johnson', 'David Wilson'];
-                    const saccos = ['Sacco A', 'Sacco B', 'Sacco C', 'Sacco D', 'Sacco E'];
-                    const routes = ['Nairobi CBD - Juja ', 'Nairobi CBD - Embakasi', 'Nairobi CBD - Lavington', 'Madaraka Estate - Langata', 'Utawala - Umoja'];
-                
+                    // Updated sample data arrays with names and locations relevant to Kenya
+                    const driverNames = ['Kamau Njoroge', 'Fatuma Ali', 'Omondi Otieno', 'Wanjiku Mwangi', 'Njoki Chege'];
+                    const saccos = ['Matatu Sacco', 'Nairobi Sacco', 'Mombasa Raha Sacco', 'Eldoret Express Sacco', 'Kisumu Transporters Sacco'];
+                    const routes = ['Nairobi CBD - Thika', 'Nairobi CBD - Mombasa', 'Nairobi CBD - Nakuru', 'Nairobi CBD - Eldoret', 'Nairobi CBD - Kisumu'];
+
                     for (let i = 0; i < numberOfPins; i++) {
                         const randomPos = getRandomCoordinates(center);
-                
+
                         // Randomly select driver name, sacco, and route
                         const driverName = driverNames[Math.floor(Math.random() * driverNames.length)];
                         const sacco = saccos[Math.floor(Math.random() * saccos.length)];
                         const route = routes[Math.floor(Math.random() * routes.length)];
-                
+
                         // Updated bus details with new fields
                         const busDetails = {
-                            numberPlate: `BUS-${1000 + i}`,
-                            destination: `Destination ${i + 1}`,
+                            numberPlate: `KCA ${1000 + i}Y`,
                             driverName: driverName,
                             sacco: sacco,
                             route: route
                         };
-                
+
                         // Update the popup content to include driver name, sacco, and route
                         L.marker([randomPos.lat, randomPos.lng], {icon: randomPinIcon})
                             .addTo(map)
-                            .bindPopup(`<strong>Number Plate:</strong> ${busDetails.numberPlate}<br><strong>Destination:</strong> ${busDetails.destination}<br><strong>Driver:</strong> ${busDetails.driverName}<br><strong>Sacco:</strong> ${busDetails.sacco}<br><strong>Route:</strong> ${busDetails.route}`);
+                            .bindPopup(`<strong>Number Plate:</strong> ${busDetails.numberPlate}<br><strong>Driver:</strong> ${busDetails.driverName}<br><strong>Sacco:</strong> ${busDetails.sacco}<br><strong>Route:</strong> ${busDetails.route}`);
                     }
                 }
                 

@@ -47,7 +47,7 @@
         @endphp
 
         <x-header title="Vehicles" with-anchor separator />
-        <x-button label="Add Vehicle" icon="o-plus" wire:click="create" class="btn btn-primary" />
+        <x-button label="Add Vehicle" icon="o-plus" wire:click="create" class="btn btn-primary" spinner />
         <x-table :headers="$headers" :rows="$vehicles" striped >
             @foreach($vehicles as $vehicle)
                 @scope('actions', $vehicle)
@@ -91,7 +91,7 @@
                                 ];
                 @endphp
                 <x-select label="Type" :options="$types" wire:model="type" />
-                <x-input wire:model="color" label="Color" />
+                <x-colorpicker wire:model="color" label="Select a color" hint="Please, a nice color" icon="o-swatch" />
 
                 <x-slot:actions>    
                     <x-button wire:click="closeModal" class="btn btn-primary" spinner label="Cancel" />
@@ -131,13 +131,13 @@
                                     ],
                                 ];
                 @endphp
-                <x-select label="Type" :options="$types" wire:model="type" />
-                <x-input wire:model="color" label="Color" />
+                <x-select label="Type" :options="$types" wire:model="type" placeholder="Select a car type" />
+                <x-colorpicker wire:model="color" label="Select a color" hint="Please, a nice color" icon="o-swatch" />
 
                 @php
                     $saccos = \App\Models\Sacco::take(5)->get();
                 @endphp
-                <x-select wire:model="sacco_id" icon="o-users" :options="$saccos" label="Sacco" />
+                <x-select wire:model="sacco_id" icon="o-users" :options="$saccos" label="Sacco" placeholder="Select a SACCO" />
 
                 <x-slot:actions>    
                     <x-button wire:click="closeModal" class="btn btn-primary" spinner label="Cancel" />

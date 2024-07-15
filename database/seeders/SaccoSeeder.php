@@ -17,6 +17,14 @@ class SaccoSeeder extends Seeder
     {
         DB::table('saccos')->delete();
 
+        $saccoNames = [
+            'Mwamba Sacco',
+            'Rift Valley Shuttle',
+            'Nairobi Matatu Sacco',
+            'Coast Bus Sacco',
+            'Western Express Sacco'
+        ];
+
         $descriptions = [
             'A leading provider of matatu services in Nairobi, offering safe and reliable transportation.',
             'Dedicated to excellence in transportation, connecting rural areas with the city.',
@@ -25,16 +33,16 @@ class SaccoSeeder extends Seeder
             'Offering luxurious and comfortable travel options at affordable prices.'
         ];
 
-        for ($i = 0; $i < 5; $i++) {
+        foreach ($saccoNames as $index => $name) {
             Sacco::create([
-                'name' => 'Sacco ' . Str::random(5),
-                'registration_number' => strtoupper(Str::random(6)),
-                'email' => Str::random(5).'@gmail.com',
-                'phone' => '07'.mt_rand(10000000, 99999999),
-                'address' => 'P.O Box '.mt_rand(100, 999).' Nairobi',
-                'logo' => Str::random(5).'.jpg',
+                'name' => $name,
+                'registration_number' => 'SACCO-' . strtoupper(Str::random(4)) . '-' . sprintf('%03d', $index + 1),
+                'email' => strtolower(Str::slug($name, '')) . '@gmail.com',
+                'phone' => '07' . mt_rand(10000000, 99999999),
+                'address' => 'P.O Box ' . mt_rand(100, 999) . ' Nairobi',
+                'logo' => strtolower(Str::slug($name, '')) . '.jpg',
                 'password' => bcrypt('password'),
-                'description' => $descriptions[array_rand($descriptions)], // Select a random description
+                'description' => $descriptions[$index % count($descriptions)], // Cycle through descriptions
             ]);
         }
     }

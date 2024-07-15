@@ -47,7 +47,7 @@
         @endphp
 
         <x-header title="Drivers" with-anchor separator />
-        <x-button wire:click="create" icon="o-plus" class="btn btn-primary" label="Add Driver" />
+        <x-button wire:click="create" icon="o-plus" class="btn btn-primary" label="Add Driver" spinner />
         <x-table :headers="$headers" :rows="$drivers" striped>
             @foreach($drivers as $driver)
                 @scope('actions', $driver)
@@ -80,10 +80,10 @@
                 <x-input wire:model="password" label="Password" type="password" />
 
                 @php
-                    $saccos = \App\Models\Sacco::take(5)->get();
+                    $saccos = \App\Models\Sacco::all();
                 @endphp
 
-                <x-select wire:model="sacco_id" icon="o-users" :options="$saccos" label="Sacco" />
+                <x-select wire:model="sacco_id" icon="o-users" :options="$saccos" label="Sacco" placeholder="Select a Sacco" hint="Select only one" />
 
                 <x-slot:actions>    
                     <x-button wire:click="closeModal" class="btn btn-primary" spinner label="Cancel" />

@@ -27,7 +27,8 @@
         {{-- The `$slot` goes here --}}
         <x-slot:content>
             @php
-                $users = \App\Models\Vehicle::all();
+                $sacco_id = auth()->user()->sacco->id;
+                $users = \App\Models\Vehicle::where('sacco_id', $sacco_id)->get();
 
                 $headers = [
                     ['key' => 'id', 'label' => '#'],
@@ -39,7 +40,7 @@
             @endphp
 
             <x-header title="Vehicles" with-anchor separator />
-            <x-button label="Add Vehicle" icon="o-plus" wire:click="addVehicleModal" class="btn btn-primary" />
+            <x-button label="Add Vehicle" icon="o-plus" wire:click="addVehicleModal" class="btn btn-primary" spinner />
             <x-table :headers="$headers" :rows="$users" striped >
                 @foreach($users as $user)
                     @scope('actions', $user)

@@ -18,7 +18,7 @@ class DriverSeeder extends Seeder
     {
         DB::table('drivers')->delete();
 
-        $names = ['John Doe', 'Jane Smith', 'Michael Brown', 'Emily Johnson', 'David Wilson'];
+        $names = ['Kamau Njoroge', 'Asha Mwende', 'Omondi Otieno', 'Fatuma Ali', 'Wanjiku Maina'];
         $domains = ['seriansacco.com', 'orokisesacco.com', 'stmaryssacco.net', 'ngumosacco.org'];
 
         for ($i = 0; $i < 5; $i++) {

@@ -15,11 +15,16 @@ class SaccoAdmin extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'role',
+        // 'role',
         'phone',
         'sacco_id',
         'password',
         'last_login',
         'last_logout'
     ];
+
+    public function sacco()
+    {
+        return $this->belongsTo(Sacco::class, 'sacco_id');
+    }
 }

@@ -15,19 +15,31 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // Replace 'John Doe' with a Kenyan common name and adjust the email accordingly
         DB::table('users')->insert([
-            'name' => 'John Doe',
-            'email' => 'user@example.com',
+            'name' => 'Wanjiru Kamau',
+            'email' => 'wanjiru.kamau@example.com',
             'phone' => '0712545678',
             'password' => bcrypt('password'),
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        for ($i = 1; $i <= 5; $i++) {
+
+        // Kenyan common names for additional users
+        $kenyanNames = [
+            'Amani Kiprono',
+            'Fatuma Aluoch',
+            'Makena Njeri',
+            'Omari Mwangi',
+            'Nia Mutiso'
+        ];
+
+        foreach ($kenyanNames as $i => $name) {
+            $emailName = strtolower(str_replace(' ', '.', $name)); // Convert name to lowercase and replace space with dot for email
             DB::table('users')->insert([
-                'name' => 'User ' . $i,
-                'email' => 'user' . $i . '@example.com',
-                'phone' => '071254567' . $i,
+                'name' => $name,
+                'email' => $emailName . '@example.com',
+                'phone' => '071254567' . ($i + 9), // Adjust phone numbers to be unique
                 'password' => bcrypt('password'),
                 'created_at' => now(),
                 'updated_at' => now()
