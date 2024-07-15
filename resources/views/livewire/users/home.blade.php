@@ -103,7 +103,7 @@
 
                         L.marker([randomPos.lat, randomPos.lng], {icon: randomPinIcon})
                             .addTo(map)
-                            .bindPopup(`<strong>Number Plate:</strong> ${busDetails.numberPlate}<br><strong>Driver:</strong> ${busDetails.driverName}<br><strong>Sacco:</strong> ${busDetails.sacco}<br><strong>Route:</strong> ${busDetails.route}<br><a href="#" onclick="Livewire.emit('openModal', ${JSON.stringify(busDetails).split('"').join("&quot;")})">Additional Details</a>`);
+                            .bindPopup(`<strong>Number Plate:</strong> ${busDetails.numberPlate}<br><strong>Driver:</strong> ${busDetails.driverName}<br><strong>Sacco:</strong> ${busDetails.sacco}<br><strong>Route:</strong> ${busDetails.route}<br><a href="#" onclick="Livewire.dispatch('openModal', '${JSON.stringify(busDetails)}')">Additional Details</a>`);
                     }
                 }
 

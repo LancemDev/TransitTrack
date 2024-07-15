@@ -15,14 +15,15 @@ class Home extends Component
     use Toast;
 
     public bool $showModal = false;
+    public $search;
 
     public $busDetails = [];
 
     protected $listeners = ['openModal'];
 
-    public function openModal($busDetails)
+    public function openModal()
     {
-        $this->busDetails = $busDetails;
+        // $this->busDetails = $busDetails;
         $this->showModal = true;
     }
     public function render()
