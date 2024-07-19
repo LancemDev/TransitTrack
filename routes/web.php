@@ -35,6 +35,7 @@ use App\Livewire\Admin\AddUser;
 
 use App\Livewire\Sacco\ManageDrivers;
 use App\Livewire\Sacco\ManageVehicles;
+use App\Livewire\Sacco\Routes as SaccoRoutes;
 
 use Laravel\Socialite\Facades\Socialite;
 
@@ -59,7 +60,7 @@ Route::get('/auth/github', function () {
     try {
         $user = Socialite::driver('github')->user();
     } catch (\Laravel\Socialite\Two\InvalidStateException $e) {
-        return redirect('/auth/github'); // Redirect back to the OAuth route.
+        return redirect('/auth/github'); 
     }
 
     $newUser = \App\Models\User::firstOrCreate(
@@ -70,7 +71,6 @@ Route::get('/auth/github', function () {
         ]
     );
 
-    // Log the user in
     Auth::login($newUser, true);
 
     return redirect('/users/home')->with('success', 'Login successful');
@@ -99,7 +99,7 @@ Route::get('/login/google/callback', function () {
     );
 
     // Log the user in using a custom guard
-    Auth::guard('users')->login($newUser);
+    Auth::guard('web')->login($newUser);
 
     return redirect('/users/home')->with('success', 'Login successful');
 });
@@ -152,6 +152,7 @@ Route::middleware('auth:sacco_admin')->group(function () {
     Route::get('sacco/home', SaccoHome::class)->name('sacco_admin.home');
     Route::get('sacco/manage-drivers', ManageDrivers::class)->name('sacco.manage-drivers');
     Route::get('sacco/manage-vehicles', ManageVehicles::class)->name('sacco.manage-vehicles');
+    Route::get('sacco/routes', SaccoRoutes::class)->name('sacco.routes');
 });
 
 /*

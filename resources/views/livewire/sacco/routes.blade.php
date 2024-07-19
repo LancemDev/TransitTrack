@@ -47,15 +47,54 @@
 
         {{-- The `$slot` goes here --}}
         <x-slot:content>
-            <x-header title="{{ $sacco_name ?? 'Default Sacco Name' }}" subtitle="{{ $sacco_description ?? 'Default description' }}" size="text-xl" separator />
-            <div class="flex">
-                <x-stat title="Total Drivers" value="22" icon="o-users" tooltip-bottom="Total registered drivers" />
-                <x-stat title="Active Trips" description="Today h" value="22" icon="o-arrow-trending-up" tooltip-bottom="Trips currently in progress" />
-                <x-stat title="Completed Trips" description="This month" value="12" icon="o-check-circle" tooltip-bottom="Trips completed this month" />
-                <x-stat title="Cancelled Trips" description="This month" value="04" icon="o-arrow-trending-down" class="text-orange-500" color="text-pink-500" tooltip-bottom="Trips cancelled this month" />
-            </div>
+        @php
+            $sacco_id = auth()->user()->sacco->id;
+            $routes = \App\Models\Route::all()->map(function ($route) {
+                // Check if 'waypoints' is a JSON string and decode it
+                $decodedWaypoints = json_decode($route->waypoints, true);
+                if (is_array($decodedWaypoints)) {
+                    // It's a JSON-encoded array, so we convert it to a comma-separated string
+                    $route->waypoints = implode(', ', $decodedWaypoints);
+                }
+                // If it's not a JSON-encoded array, we assume it's already in the correct format
+                return $route;
+            });
 
-            <livewire:chart.sacco-admin.line />
+            $headers = [
+                ['key' => 'id', 'label' => '#'],
+                ['key' => 'name', 'label' => 'Name of Route'],
+                ['key' => 'start_point', 'label' => 'Start Point'],
+                ['key' => 'end_point', 'label' => 'End Point'],
+                ['key' => 'waypoints', 'label' => 'Way Points'],
+                ['key' => 'actions', 'label' => 'Actions'],
+            ];
+        @endphp
+
+        <x-header title="Routes" with-anchor separator />
+        <x-button label="Add Route" icon="o-plus" wire:click="addRoutes" class="btn btn-primary" spinner />
+        <x-table :headers="$headers" :rows="$routes" striped>
+            @foreach($routes as $route)
+                @scope('actions', $route)
+                    <div class="flex">
+                        <x-button icon="o-trash" wire:click="delete({{ $route->id }})" spinner class="btn-sm" />
+                        <x-button icon="o-pencil" wire:click="edit({{ $route->id }})" spinner class="btn-sm" />
+                    </div>
+                @endscope
+            @endforeach
+        </x-table>
+
+        <x-modal wire:model="addRouteModal" title="Add Routes">
+            <x-form wire:submit="addRoute">
+                <x-input wire:model="name" label="Name of Route" omit-error />
+                <x-input wire:model="start_point" label="Start Point" omit-error />
+                <x-input wire:model="end_point" label="End Point" omit-error />
+                <x-tags wire:model="waypoints" label="Way Points" hint="Click Enter to add new waypoint" />
+                
+                <x-slot:actions>
+                    <x-button label="Save Route" type="submit" class="btn btn-primary" spinner />
+                </x-slot:actions>
+            </x-form>
+        </x-modal>
             
         </x-slot:content>
     </x-main>

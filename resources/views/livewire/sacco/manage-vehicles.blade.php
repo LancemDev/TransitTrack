@@ -10,12 +10,8 @@
                 {{-- User --}}
                 @if($user = auth()->user())
                     <x-menu-separator />
- 
-                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
-                        
-                    </x-list-item>
-                    <x-theme-toggle darkTheme="coffee" lightTheme="bumblebee" />
- 
+                        <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
+                        </x-list-item>
                     <x-menu-separator />
                 @endif
  
@@ -31,7 +27,8 @@
         {{-- The `$slot` goes here --}}
         <x-slot:content>
             @php
-                $users = \App\Models\Vehicle::all();
+                $sacco_id = auth()->user()->sacco->id;
+                $users = \App\Models\Vehicle::where('sacco_id', $sacco_id)->get();
 
                 $headers = [
                     ['key' => 'id', 'label' => '#'],
@@ -43,7 +40,7 @@
             @endphp
 
             <x-header title="Vehicles" with-anchor separator />
-            <x-button label="Add Vehicle" wire:click="addVehicleModal" class="btn btn-primary" />
+            <x-button label="Add Vehicle" icon="o-plus" wire:click="addVehicleModal" class="btn btn-primary" spinner />
             <x-table :headers="$headers" :rows="$users" striped >
                 @foreach($users as $user)
                     @scope('actions', $user)
@@ -56,7 +53,7 @@
             </x-table>
 
             {{-- Add vehicle modal --}}
-            <x-modal wire:model="showAddVehicleModal" persistent backdrop-blur>
+            <x-modal wire:model="showAddVehicleModal" title="Add Vehicle" persistent backdrop-blur>
                 <x-form wire:submit.save="addVehicle">
                     <x-input wire:model="number_plate" label="Plate" omit-error />
                     @php
@@ -88,7 +85,7 @@
                         ]; 
                     @endphp
                     <x-select label="Type" :options="$options" wire:model="type" />
-                    <x-input wire:model="color" label="Color" omit-error />
+                    <x-colorpicker wire:model="color" label="Select a color" hint="Please, a nice color" icon="o-swatch" />
 
                     <x-slot:actions>
                         <x-button type="submit" label="Save" class="btn btn-success" spinner />
@@ -98,7 +95,7 @@
             </x-modal>
 
             {{-- Edit vehicle modal --}}
-            <x-modal wire:model="editVehicleModal" persistent backdrop-blur>
+            <x-modal wire:model="editVehicleModal" title="Update Vehicle" persistent backdrop-blur>
                 <x-form wire:submit="updateVehicle">
                     <x-input wire:model="number_plate" label="Plate" omit-error />
                     @php
@@ -130,7 +127,7 @@
                         ]; 
                     @endphp
                     <x-select label="Type" :options="$options" wire:model="type" />
-                    <x-input wire:model="color" label="Color" omit-error />
+                    <x-colorpicker wire:model="color" label="Select a color" hint="Please, a nice color" icon="o-swatch" />
 
                     <x-slot:actions>
                         <x-button type="submit" label="Save" class="btn btn-success" spinner />

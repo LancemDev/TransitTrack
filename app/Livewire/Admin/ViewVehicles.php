@@ -14,13 +14,45 @@ class ViewVehicles extends Component
     public $number_plate;
     public $type;
     public $color;
+    public $sacco_id;
 
     public bool $showEditModal = false;
+    public bool $showCreateModal = false;
 
     public function delete($id)
     {
         Vehicle::destroy($id);
         $this->success('Vehicle deleted successfully');
+    }
+
+    public function create()
+    {
+        $this->number_plate = '';
+        $this->type = '';
+        $this->color = '';
+        $this->showCreateModal = true;
+    }
+
+    public function store()
+    {
+        $this->validate([
+            'number_plate' => 'required',
+            'type' => 'required',
+            'color' => 'required'
+        ]);
+
+        $vehicle = new Vehicle();
+        $vehicle->number_plate = $this->number_plate;
+        $vehicle->type = $this->type;
+        $vehicle->color = $this->color;
+        $vehicle->sacco_id = $this->sacco_id;
+
+        if ($vehicle->save()) {
+            $this->showCreateModal = false;
+            $this->success('Vehicle added successfully');
+        } else {
+            $this->error('Failed to add vehicle');
+        }
     }
 
     public function edit($id)

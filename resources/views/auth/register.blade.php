@@ -47,7 +47,7 @@
             <div class="mt-4 text-sm text-gray-600 text-center">
               <p>or with email</p>
             </div>
-            <form action="/register" method="POST" class="space-y-4">
+            <form action="/new/register" method="POST" class="space-y-4">
               @csrf
               <!-- Your form elements go here -->
               <div>

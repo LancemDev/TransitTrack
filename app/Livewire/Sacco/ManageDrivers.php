@@ -5,16 +5,19 @@ namespace App\Livewire\Sacco;
 use Livewire\Component;
 use App\Models\Driver;
 use Mary\Traits\Toast;
+use Livewire\WithFileUploads;
 
 class ManageDrivers extends Component
 {
-    use Toast;
+    use Toast, WithFileUploads;
 
     public $name;
     public $email;
     public $phone;
     public $password;
     public $driverId;
+    public $avatar;
+    public $sacco_name;
 
 
     public bool $showAddDriverModal = false;
@@ -43,6 +46,10 @@ class ManageDrivers extends Component
         $driver->email = $this->email;
         $driver->phone = $this->phone;
         $driver->password = bcrypt($this->password);
+        $driver->sacco_id = auth()->user()->sacco_id;
+        if($this->avatar){
+            $driver->avatar_path = $this->avatar->store('avatars', 'public');
+        }
 
         if ($driver->save()) {
             $this->showAddDriverModal = false;
@@ -59,6 +66,9 @@ class ManageDrivers extends Component
         $driver->name = $this->name;
         $driver->email = $this->email;
         $driver->phone = $this->phone;
+        if($this->avatar){
+            $driver->avatar_path = $this->avatar->store('avatars', 'public');
+        }
 
         if ($driver->save()) {
             $this->editDriverModal = false;
@@ -75,6 +85,8 @@ class ManageDrivers extends Component
         $this->name = $driver->name;
         $this->email = $driver->email;
         $this->phone = $driver->phone;
+        $this->avatar = $driver->avatar_path;
+        $this->sacco_name = $driver->sacco->name;
         $this->editDriverModal = true;
     }
 
@@ -117,6 +129,8 @@ class ManageDrivers extends Component
 
     public function render()
     {
+        $drivers = Driver::where('sacco_id', auth()->user()->sacco_id)->get();
+        $this->avatar = auth()->user()->avatar_path;
         return view('livewire.sacco.manage-drivers');
     }
 }

@@ -18,8 +18,8 @@ class DriverSeeder extends Seeder
     {
         DB::table('drivers')->delete();
 
-        $names = ['John Doe', 'Jane Smith', 'Michael Brown', 'Emily Johnson', 'David Wilson'];
-        $domains = ['example.com', 'mail.com', 'driver.net', 'transport.org'];
+        $names = ['Kamau Njoroge', 'Asha Mwende', 'Omondi Otieno', 'Fatuma Ali', 'Wanjiku Maina'];
+        $domains = ['seriansacco.com', 'orokisesacco.com', 'stmaryssacco.net', 'ngumosacco.org'];
 
         for ($i = 0; $i < 5; $i++) {
             $nameParts = explode(' ', $names[$i]);
@@ -39,7 +39,7 @@ class DriverSeeder extends Seeder
         // Adding a specific driver with known details and sacco_id
         Driver::create([
             'name' => 'Driver Doe',
-            'email' => 'driver@example.com',
+            'email' => 'john@seriansacco.com',
             'phone' => '0712345678',
             'sacco_id' => 1, // Assign a specific sacco_id if needed
             'password' => bcrypt('password'),

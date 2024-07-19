@@ -29,7 +29,7 @@
         {{-- SIDEBAR --}}
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
             <div>
-            @if(empty($this->driverAvatarPath))
+                {{-- @if(empty($this->driverAvatarPath))
                     <x-form wire:submit.prevent="uploadPhoto">
                         <x-file wire:model="photo" accept="image/png" crop-after-change>
                             <img src="/empty_user.jpeg" class="h-40 rounded-lg" />
@@ -38,9 +38,11 @@
                             <x-button label="Update Profile Photo" class="btn btn-success" type="submit" />
                         </x-slot:actions>
                     </x-form>
-                @else
+                @else --}}
+                @if($this->driverAvatarPath)
                     <img src="{{ asset('storage/' . $this->driverAvatarPath) }}" class="h-40 rounded-lg" />
                 @endif
+                {{-- @endif --}}
             </div>
             <x-stat
                     title="Driver Name"
@@ -59,27 +61,46 @@
                 value="{{ $vehicleNumberPlate }}"
                 icon="o-truck"
                 tooltip-bottom="Trips cancelled this month" />
+
+            <x-button wire:click="clockOut" label="Clock Out" class="btn btn-primary" /> 
+
         </x-slot:sidebar>
         
         {{--Content goes here--}}
         <x-slot:content>
+            <x-modal wire:model="showTripSummary" persistent class="backdrop-blur">
+                <x-form wire:submit="saveTripsSummary">
+                    <x-input label="Number of Trips" icon="o-truck" wire:model="number_of_trips" />
+                    <x-input label="Off Peak Revenue" icon="o-banknotes" wire:model="off_peak_revenue" prefix="KSh" money inline/>
+                    <x-input label="Peak Revenue" icon="o-banknotes" wire:model="on_peak_revenue" prefix="KSh" money inline />
+
+                    <x-slot:actions>
+                        <x-button label="Clock Out Now" type="submit" class="btn btn-success" />
+                        <x-button label="Cancel" @click="$wire.showTripSummary = false" />
+                    </x-slot:actions>
+                </x-form>
+            </x-modal>
             <x-modal wire:model="selectVehicleModal" persistent class="backdrop-blur">
                 <x-form wire:submit.prevent="saveVehicle">
                     <div>Processing ...</div>
                     @php
-                        $vehicles = App\Models\Vehicle::take(5)->get()->map(function ($vehicle) {
+                        $sacco_id = auth()->user()->sacco_id;
+                        $vehicles = App\Models\Vehicle::where('sacco_id', $sacco_id)->get()->map(function ($vehicle) {
                             return ['id' => $vehicle->id, 'name' => $vehicle->number_plate];
                         });
+
+                        $routes = App\Models\Route::all()->map(function ($route) {
+                            return ['id' => $route->id, 'name' => $route->name];
+                        });
                     @endphp
-                    <x-select label="Selected Vehicle" icon="o-user" :options="$vehicles" wire:model="selectedVehicleId" inline />
+                    <x-select label="Selected Vehicle" icon="o-user" :options="$vehicles" wire:model="selectedVehicleId" placeholder="Select Vehicle"  inline hint="Select the vehicle you are currently driving" />
+                    <x-select label="Selected Route" icon="o-map" :options="$routes" wire:model="selectedRouteId" inline placeholder="Select Route" hint="Select the route you are currently on" />
                     <x-slot:actions>
                         <x-button label="Save" class="btn btn-success" type="submit" />
                         <x-button label="Cancel" @click="$wire.selectVehicleModal = false" />
                     </x-slot:actions>
                 </x-form>
             </x-modal>
-
-            <script>getLocation();</script>
     
             <div class="flex flex-col items-center  h-screen">
                 <x-form wire:submit.save="add">
@@ -93,11 +114,9 @@
                     <x-radio label="Select one" :options="$options" wire:model="selectedOption" />
 
                     <x-slot:actions>
-                        <x-button type="button" label="Save" class="btn btn-success" onclick="navigator.geolocation.getCurrentPosition(function(position) { sendLocationToLivewire(position.coords.latitude, position.coords.longitude); })" />
+                        <x-button type="button" label="Save" class="btn btn-success" wire:click="add" />
                     </x-slot:actions>
-                    {{-- <x-slot:actions>
-                        <x-button type="button" label="Save" class="btn btn-success" onclick="navigator.geolocation.getCurrentPosition(function(position) { sendLocationToLivewire(position.coords.latitude, position.coords.longitude); })" />
-                    </x-slot:actions>--}}
+                    
                 </x-form>
             </div>
         </x-slot:content>
@@ -105,25 +124,4 @@
             getLocation();
         </script>
     </x-main>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                alert("Geolocation is not supported by this browser.");
-            }
-        }
-
-        function showPosition(position) {
-            // Emit a custom event instead of directly calling the method
-            Livewire.emit('locationAdded', position.coords.latitude, position.coords.longitude);
-        }
-
-        function showError(error) {
-            // Error handling remains the same
-        }
-
-    });
-    </script>
 </div>

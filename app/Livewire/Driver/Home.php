@@ -8,6 +8,11 @@ use Mary\Traits\Toast;
 use App\Models\BoardAlert;
 use App\Models\Driver;
 use App\Models\Vehicle;
+use App\Models\DriverActivity;
+use App\Models\Fare;
+use App\Models\TripRevenue;
+use App\Models\Route;
+use Illuminate\Support\Facades\Auth;
 
 class Home extends Component
 {
@@ -21,6 +26,8 @@ class Home extends Component
 
     public $selectVehicleModal = true;
 
+    public $showTripSummary = false;
+
     public $photo;
     
     public $driverId;
@@ -33,13 +40,50 @@ class Home extends Component
 
     public $location;
 
+    public $selectedRouteId;
+    public $routes;
+    public $vehicles;
+
+    public $driver_id, $route_id, $number_of_trips, $off_peak_revenue, $on_peak_revenue;
+
     protected $listeners = ['locationAdded' => 'add'];
+
+    // public function mount($driverSaccoId)
+    // {
+    //     $this->routes = Route::all(); // Fetch all routes
+    //     $this->vehicles = Vehicle::where('sacco_id', $driverSaccoId)->get(); // Fetch vehicles by sacco_id
+    // }
 
     public function saveVehicle()
     {
         $this->selectVehicleModal = false;
         $this->fetchVehicleDetails();
+        $clock_in = now();
+        $activity = DriverActivity::create([
+            'driver_id' => $this->driverId,
+            'route_id' => $this->selectedRouteId,
+            'clock_in' => $clock_in,
+        ]);
         $this->success('Vehicle selected successfully');
+    }
+
+    public function saveTripsSummary()
+    {
+        $tripRevenue = TripRevenue::create([
+            'driver_id' => auth()->id(),
+            // 'route_id' => $this->route_id,
+            'number_of_trips' => $this->number_of_trips,
+            'off_peak_revenue' => $this->off_peak_revenue,
+            'on_peak_revenue' => $this->on_peak_revenue,
+        ]);
+
+        $this->clockingOut();
+
+        $this->showTripSummary = false;
+
+        $this->success('Trips summary saved successfully');
+
+        return redirect('/logout');
     }
 
     
@@ -60,23 +104,35 @@ class Home extends Component
             }
         }
     }
-
     
-
-    public function add($latitude, $longitude)
+    public function clockOut()
     {
+        $this->showTripSummary = true;
+    }
+
+    public function clockingOut()
+    {
+        $activity = DriverActivity::where('driver_id', $this->driverId)->latest()->first();
+        $activity->clock_out = now();
+        $activity->save();
+        $this->success('Clocked out successfully');
+    }
+
+    public function add()
+    {
+        // dd($latitude, $longitude);
         $status = strtolower($this->selectedOption);
 
-        $location = $latitude && $longitude ? $latitude . ', ' . $longitude : null;
+        // $location = $latitude && $longitude ? $latitude . ', ' . $longitude : null;
 
         $alert = BoardAlert::create([
             'driver_id' => auth()->id(),
             'vehicle_id' => $this->selectedVehicleId,
             'status' => $status,
-            'location' => $location,
+            // 'location' => $location,
         ]); 
 
-        $this->success('State changed to '.($this->selectedOption == 'full' ? 'full' : 'empty').' successfully');
+        $this->success('State changed successfully');
     }
     
     public function fetchVehicleDetails()
@@ -89,6 +145,9 @@ class Home extends Component
                 $this->vehicleNumberPlate = null;
                 $this->error('Vehicle not found.');
             }
+        } else{
+            $this->vehicleNumberPlate = null;
+            $this->error('Vehicle not found.');
         }
     }
 
