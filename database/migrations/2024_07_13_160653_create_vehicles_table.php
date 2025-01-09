@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('sacco_id')->constrained();
             $table->string('number_plate')->unique();
-            $table->enum('type', ['bus', 'matatu', 'taxi', 'lorry', 'motorcycle', 'bicycle'])->default('bus');
+            $table->enum('type', ['bus', 'matatu', 'taxi', 'lorry', 'motorcycle', 'bicycle', 'Tuk Tuk', 'Boda Boda'])->default('bus');
             $table->string('color');
             $table->timestamps();
         });
